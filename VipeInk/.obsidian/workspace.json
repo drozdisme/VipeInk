@@ -11,14 +11,12 @@
             "id": "bb710f8fecea3260",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Welcome.md",
-                "mode": "source",
-                "source": false
+                "file": "WhitePaper.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Welcome"
+              "icon": "lucide-file-text",
+              "title": "WhitePaper"
             }
           }
         ]
@@ -44,7 +42,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Файловый менеджер"
             }
           },
           {
@@ -94,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "WhitePaper.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +102,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Welcome"
+              "title": "Обратные ссылки для WhitePaper"
             }
           },
           {
@@ -113,12 +111,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Welcome.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Welcome"
+              "title": "Outgoing links"
             }
           },
           {
@@ -156,13 +153,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md",
+                "file": "Untitled.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Welcome"
+              "title": "Outline of Untitled"
             }
           }
         ]
@@ -173,19 +170,28 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
     }
   },
-  "active": "d91a2f30537901bf",
+  "active": "bb710f8fecea3260",
   "lastOpenFiles": [
+    "BisnesPlan.pdf",
+    "Architecture.md",
+    "Untitled",
+    "Untitled.md",
+    "TON SWIFT Intent Settlement_dragdropdo.md",
     "create a link.md",
+    "TON SWIFT Intent Settlement 1.txt",
+    "TON SWIFT Intent Settlement.txt",
+    "WhitePaper.pdf",
     "Welcome.md",
+    "TON SWIFT Intent Settlement-2026-04-14-120443.mmd",
     "2026-04-14.md",
     "Untitled.base"
   ]
