@@ -8,6 +8,7 @@ tags: #mvp #roadmap #hub
 - [[Этап 3 Тестирование]]
 - [[Следующие шаги]]
 - [[Метрики успеха]]
+- [[Bank Middleware MVP]]
 
 ## Логика
-Сначала один рабочий сценарий, потом удобство, потом проверка на реальных пользователях.
+Сначала один demoable bank settlement scenario, потом pilot-ready integration flow, потом проверка на реальных bank conversations / PoC.

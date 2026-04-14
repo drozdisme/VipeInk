@@ -7,27 +7,30 @@ tags: #mvp #architecture
 - [[Ключевые функции]]
 - [[Риски MVP]]
 - [[Референсы]]
+- [[Bank Middleware MVP]]
+- [[Invisible Middleware]]
 
 ## MVP-архитектура
-- UI layer
-- Payment intent builder
-- Wallet handoff / signing
-- Transaction submission
-- Transaction status tracking
-- Activity log
+- Bank-facing API layer
+- Settlement Request API
+- orchestration/service layer
+- transaction state machine
+- audit trail console
+- compliance visibility layer
+- mock or pilot bank integration
 
 ## Границы
 Это не [[Future Architecture]].
 
 ## Зависит от
-- [[Ключевые функции]]
 - [[Целевая аудитория]]
+- [[Ключевые функции]]
+- [[Ценность продукта]]
 
 ## Не входит
-- rollup
-- sequencer
-- prover market
-- bridge
-- fiat rails
+- production ZK-rollup with full decentralization
+- proof marketplace
 - ATM flows
-- compliance stack
+- full reserve auditor network
+- full multicurrency infrastructure
+- consumer wallet product

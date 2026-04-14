@@ -3,10 +3,14 @@ tags: #feature #hub
 
 Связано:
 - [[MVP]]
-- [[Payment Intent]]
-- [[Wallet Handoff]]
-- [[Transaction Status Tracking]]
-- [[Activity Log]]
+- [[Bank Middleware MVP]]
+- [[Settlement Request API]]
+- [[Audit Trail Console]]
+- [[Compliance Visibility Layer]]
+- [[Pilot Bank Integration]]
 
 ## Принцип
-Только то, что нужно для первого рабочего платежного сценария.
+Только то, что нужно для первого bank-facing invisible middleware MVP.
+
+## Примечание
+Consumer-style payment flow остаётся вторичным по отношению к bank settlement flow.
