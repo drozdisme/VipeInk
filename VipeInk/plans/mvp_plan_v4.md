@@ -10,7 +10,7 @@ Supersedes: [[mvp_plan_v3]]
 Build the fastest realistic wedge for Vipeink by framing it as a TON settlement / L2 abstraction layer that can later support bank middleware, while staying cheap, demoable, and grant-friendly.
 
 ## Core functionality (strict MVP scope)
-- [[Settlement Request API]]
+- [[mvp/features/Settlement Request API]]
 - lightweight sequencing / state transition abstraction
 - transaction and settlement state tracking
 - audit/proof-style record layer

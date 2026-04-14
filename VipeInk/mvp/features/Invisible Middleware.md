@@ -2,9 +2,9 @@
 tags: #value #positioning #b2b
 
 Связано:
-- [[Ценность продукта]]
-- [[Bank Middleware MVP]]
-- [[Архитектура MVP]]
+- [[mvp/Ценность продукта]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/Архитектура MVP]]
 
 ## Принцип
 Банк не меняет клиентский интерфейс и не пересобирает весь core flow.

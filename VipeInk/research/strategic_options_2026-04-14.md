@@ -3,7 +3,7 @@ tags: #strategy #mvp #l2 #ton
 
 Связано:
 - [[MVP]]
-- [[Future Architecture]]
+- [[reference/hubs/Future Architecture]]
 - [[Следующие шаги]]
 
 ## Новая рамка

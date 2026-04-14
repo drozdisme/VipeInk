@@ -3,7 +3,7 @@ tags: #strategy #alternative #telegram #agents
 
 Связано:
 - [[План развития]]
-- [[Референсы]]
+- [[reference/hubs/Референсы]]
 
 ## Суть
 Если TON ecosystem продолжит активно пушить agents, wallets и Telegram-native payments, можно подать Vipeink как settlement rail для agent payments / Telegram-native infrastructure.

@@ -3,7 +3,7 @@ tags: #strategy #alternative #funding
 
 Связано:
 - [[План развития]]
-- [[Референсы]]
+- [[reference/hubs/Референсы]]
 
 ## Суть
 Идти не только в crypto-native ecosystem, но и в broader open-tech / payments funding programs.

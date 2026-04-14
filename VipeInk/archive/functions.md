@@ -3,11 +3,11 @@ tags: #feature #hub
 
 Связано:
 - [[MVP]]
-- [[Bank Middleware MVP]]
-- [[Settlement Request API]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Settlement Request API]]
 - [[Audit Trail Console]]
-- [[Compliance Visibility Layer]]
-- [[Pilot Bank Integration]]
+- [[mvp/features/Compliance Visibility Layer]]
+- [[mvp/features/Pilot Bank Integration]]
 
 ## Принцип
 Только то, что нужно для первого bank-facing invisible middleware MVP.

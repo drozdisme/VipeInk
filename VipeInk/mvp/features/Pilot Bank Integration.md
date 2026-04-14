@@ -2,11 +2,11 @@
 tags: #feature #pilot #b2b
 
 Связано:
-- [[Bank Middleware MVP]]
-- [[Settlement Request API]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Settlement Request API]]
 - [[Audit Trail Console]]
-- [[Этап 1 Прототип]]
-- [[Этап 2 MVP]]
+- [[mvp/phases/Этап 1 Прототип]]
+- [[mvp/phases/Этап 2 MVP]]
 
 ## Роль
 Минимальная интеграция для pilot partner или realistic demo environment.

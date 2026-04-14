@@ -3,9 +3,9 @@ tags: #mvp #risk
 
 Связано:
 - [[MVP]]
-- [[Архитектура MVP]]
-- [[Гипотезы]]
-- [[План разработки MVP]]
+- [[mvp/Архитектура MVP]]
+- [[mvp/Гипотезы]]
+- [[mvp/План разработки MVP]]
 
 ## Ключевые риски
 - scope inflation from long-term architecture

@@ -2,14 +2,14 @@
 tags: #reference #source
 
 Связано:
-- [[Референсы]]
-- [[Future Architecture]]
+- [[reference/hubs/Референсы]]
+- [[reference/hubs/Future Architecture]]
 - [[MVP]]
 
 ## Состав
-- [[reference/WhitePaper.pdf]]
-- [[reference/BisnesPlan.pdf]]
-- [[reference/Architecture]]
+- [[reference/WhitePaper.tex]]
+- [[reference/BisnesPlan.tex]]
+- [[reference/Architecture.md]]
 
 ## Роль
 Это исходные материалы для extraction и уточнения стратегии, а не рабочий backlog сами по себе.

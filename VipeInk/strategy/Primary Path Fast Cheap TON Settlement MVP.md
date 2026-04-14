@@ -4,8 +4,8 @@ tags: #strategy #primary #mvp
 Связано:
 - [[MVP]]
 - [[План развития]]
-- [[Settlement Request API]]
-- [[Техстек MVP]]
+- [[mvp/features/Settlement Request API]]
+- [[mvp/Техстек MVP]]
 
 ## Суть
 Главный путь: собрать быстрый и дешёвый TON settlement / L2 abstraction MVP, который можно показать как:

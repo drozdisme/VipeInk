@@ -3,7 +3,7 @@ tags: #research #opportunities #grants #competitions
 
 Связано:
 - [[План развития]]
-- [[Primary Path Fast Cheap TON Settlement MVP]]
+- [[strategy/Primary Path Fast Cheap TON Settlement MVP]]
 
 ## Priority lens
 Ищем возможности, которые усиливают скорость, снижают стоимость и дают distribution / capital / credibility.

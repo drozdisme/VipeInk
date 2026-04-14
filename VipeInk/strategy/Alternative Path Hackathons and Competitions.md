@@ -3,7 +3,7 @@ tags: #strategy #alternative #competition
 
 Связано:
 - [[План развития]]
-- [[Референсы]]
+- [[reference/hubs/Референсы]]
 
 ## Суть
 Использовать hackathons, contests и builder competitions как способ быстро получить:

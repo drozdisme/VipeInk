@@ -2,9 +2,9 @@
 tags: #icp #audience #b2b
 
 Связано:
-- [[Целевая аудитория]]
-- [[Bank Middleware MVP]]
-- [[Pilot Bank Integration]]
+- [[mvp/Целевая аудитория]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Pilot Bank Integration]]
 
 ## Primary ICP
 - Tier-2/3 банки в EEA

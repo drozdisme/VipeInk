@@ -7,13 +7,13 @@ Status: active
 Supersedes: [[mvp_plan_v4]]
 
 ## Primary path
-[[Primary Path Fast Cheap TON Settlement MVP]]
+[[strategy/Primary Path Fast Cheap TON Settlement MVP]]
 
 ## Independent alternative paths
-- [[Alternative Path TON Grants and Ecosystem Support]]
-- [[Alternative Path Open Grants and Public Funding]]
-- [[Alternative Path Hackathons and Competitions]]
-- [[Alternative Path Agent Payments and Telegram Wedge]]
+- [[strategy/Alternative Path TON Grants and Ecosystem Support]]
+- [[strategy/Alternative Path Open Grants and Public Funding]]
+- [[strategy/Alternative Path Hackathons and Competitions]]
+- [[strategy/Alternative Path Agent Payments and Telegram Wedge]]
 
 ## Primary execution logic
 Build one reusable, cheap demo core first.

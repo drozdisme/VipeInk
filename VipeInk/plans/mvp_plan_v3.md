@@ -10,11 +10,11 @@ Supersedes: [[mvp_plan_v2]]
 Build a pilot-ready, bank-facing invisible settlement middleware product on TON for Tier-2/3 EEA banks, proving that cross-border settlement can be faster, more traceable, and easier to integrate without forcing banks to replace their existing client-facing systems.
 
 ## Core functionality (strict MVP scope)
-- [[Bank Middleware MVP]]
-- [[Settlement Request API]]
-- [[Pilot Bank Integration]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Settlement Request API]]
+- [[mvp/features/Pilot Bank Integration]]
 - [[Audit Trail Console]]
-- [[Compliance Visibility Layer]]
+- [[mvp/features/Compliance Visibility Layer]]
 
 ## Tech stack
 Recommended current direction:
@@ -25,13 +25,13 @@ Recommended current direction:
 - TON-connected settlement representation only where needed for demo/proof
 
 ## Architecture
-Working architecture is defined by [[Архитектура MVP]].
-Long-term system ideas stay in [[Future Architecture]].
+Working architecture is defined by [[mvp/Архитектура MVP]].
+Long-term system ideas stay in [[reference/hubs/Future Architecture]].
 
 ## Development phases
-- [[Этап 1 Прототип]]: one settlement scenario, one corridor, one request-to-status flow
-- [[Этап 2 MVP]]: pilot-ready API surface and audit visibility
-- [[Этап 3 Тестирование]]: bank-facing validation through conversations, demos, and PoC preparation
+- [[mvp/phases/Этап 1 Прототип]]: one settlement scenario, one corridor, one request-to-status flow
+- [[mvp/phases/Этап 2 MVP]]: pilot-ready API surface and audit visibility
+- [[mvp/phases/Этап 3 Тестирование]]: bank-facing validation through conversations, demos, and PoC preparation
 
 ## Risks
 - product drift toward consumer crypto app

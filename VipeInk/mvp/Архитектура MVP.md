@@ -3,12 +3,12 @@ tags: #mvp #architecture
 
 Связано:
 - [[MVP]]
-- [[Техстек MVP]]
-- [[Ключевые функции]]
-- [[Риски MVP]]
-- [[Референсы]]
-- [[Bank Middleware MVP]]
-- [[Invisible Middleware]]
+- [[mvp/Техстек MVP]]
+- [[mvp/Ключевые функции]]
+- [[mvp/Риски MVP]]
+- [[reference/hubs/Референсы]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Invisible Middleware]]
 
 ## MVP-архитектура
 - Bank-facing API layer
@@ -20,12 +20,12 @@ tags: #mvp #architecture
 - mock or pilot bank integration
 
 ## Границы
-Это не [[Future Architecture]].
+Это не [[reference/hubs/Future Architecture]].
 
 ## Зависит от
-- [[Целевая аудитория]]
-- [[Ключевые функции]]
-- [[Ценность продукта]]
+- [[mvp/Целевая аудитория]]
+- [[mvp/Ключевые функции]]
+- [[mvp/Ценность продукта]]
 
 ## Не входит
 - production ZK-rollup with full decentralization

@@ -4,12 +4,14 @@ tags: #strategy #graph #hub
 Связано:
 - [[MVP]]
 - [[План развития]]
-- [[Primary Path Fast Cheap TON Settlement MVP]]
-- [[Alternative Path TON Grants and Ecosystem Support]]
-- [[Alternative Path Open Grants and Public Funding]]
-- [[Alternative Path Hackathons and Competitions]]
-- [[Alternative Path Agent Payments and Telegram Wedge]]
+- [[strategy/Primary Path Fast Cheap TON Settlement MVP]]
+- [[strategy/Alternative Path TON Grants and Ecosystem Support]]
+- [[strategy/Alternative Path Open Grants and Public Funding]]
+- [[strategy/Alternative Path Hackathons and Competitions]]
+- [[strategy/Alternative Path Agent Payments and Telegram Wedge]]
 - [[Следующие шаги]]
+- [[plans/mvp_plan_latest]]
+- [[README]]
 
 ## Центральная логика
 У Vipeink один основной путь развития и несколько независимых альтернативных путей усиления.
@@ -20,13 +22,13 @@ tags: #strategy #graph #hub
 - использовать его в разных нарративах и каналах роста
 
 ## Центральный узел
-- [[Primary Path Fast Cheap TON Settlement MVP]]
+- [[strategy/Primary Path Fast Cheap TON Settlement MVP]]
 
 ## Независимые усиливающие узлы
-- [[Alternative Path TON Grants and Ecosystem Support]]
-- [[Alternative Path Open Grants and Public Funding]]
-- [[Alternative Path Hackathons and Competitions]]
-- [[Alternative Path Agent Payments and Telegram Wedge]]
+- [[strategy/Alternative Path TON Grants and Ecosystem Support]]
+- [[strategy/Alternative Path Open Grants and Public Funding]]
+- [[strategy/Alternative Path Hackathons and Competitions]]
+- [[strategy/Alternative Path Agent Payments and Telegram Wedge]]
 
 ## Порядок следования
 1. Собрать reusable core MVP

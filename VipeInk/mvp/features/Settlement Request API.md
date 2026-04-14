@@ -2,10 +2,10 @@
 tags: #feature #api #b2b
 
 Связано:
-- [[Bank Middleware MVP]]
-- [[Pilot Bank Integration]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Pilot Bank Integration]]
 - [[Audit Trail Console]]
-- [[Compliance Visibility Layer]]
+- [[mvp/features/Compliance Visibility Layer]]
 
 ## Роль
 Основная точка входа для банка:

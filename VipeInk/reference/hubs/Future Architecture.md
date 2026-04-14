@@ -2,10 +2,10 @@
 tags: #reference #architecture #future
 
 Связано:
-- [[Референсы]]
-- [[Source Documents]]
-- [[Архитектура MVP]]
-- [[reference/Architecture]]
+- [[reference/hubs/Референсы]]
+- [[reference/hubs/Source Documents]]
+- [[mvp/Архитектура MVP]]
+- [[reference/Architecture.md]]
 
 ## Назначение
 Это долгосрочная архитектурная визия проекта.

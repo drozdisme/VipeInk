@@ -3,7 +3,7 @@ tags: #strategy #alternative #grants
 
 Связано:
 - [[План развития]]
-- [[Референсы]]
+- [[reference/hubs/Референсы]]
 
 ## Суть
 Отдельный путь, не зависящий от immediate product traction: получить ecosystem support, credits, audits, distribution и funding через TON ecosystem.

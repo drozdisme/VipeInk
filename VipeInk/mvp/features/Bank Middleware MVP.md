@@ -3,11 +3,11 @@ tags: #mvp #feature #hub #b2b
 
 Связано:
 - [[MVP]]
-- [[Invisible Middleware]]
-- [[Pilot Bank Integration]]
-- [[Settlement Request API]]
+- [[mvp/features/Invisible Middleware]]
+- [[mvp/features/Pilot Bank Integration]]
+- [[mvp/features/Settlement Request API]]
 - [[Audit Trail Console]]
-- [[Compliance Visibility Layer]]
+- [[mvp/features/Compliance Visibility Layer]]
 
 ## Суть
 Первый реальный MVP Vipeink как bank-facing invisible settlement middleware, а не consumer crypto app.

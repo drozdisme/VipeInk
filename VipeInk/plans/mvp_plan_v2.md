@@ -26,16 +26,16 @@ Recommendation:
 - choose the surface with the lowest wallet-friction after WhitePaper extraction
 
 ## Architecture
-Working architecture is defined by [[Архитектура MVP]].
-Long-term system ideas stay in [[Future Architecture]] and must not expand MVP scope.
+Working architecture is defined by [[mvp/Архитектура MVP]].
+Long-term system ideas stay in [[reference/hubs/Future Architecture]] and must not expand MVP scope.
 
 ## Development phases
-- [[Этап 1 Прототип]]
-- [[Этап 2 MVP]]
-- [[Этап 3 Тестирование]]
+- [[mvp/phases/Этап 1 Прототип]]
+- [[mvp/phases/Этап 2 MVP]]
+- [[mvp/phases/Этап 3 Тестирование]]
 
 ## Risks
-- [[Риски MVP]]
+- [[mvp/Риски MVP]]
 - unclear ICP
 - unclear launch scenario
 - missing extraction from source PDFs

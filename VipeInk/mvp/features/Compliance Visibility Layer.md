@@ -2,10 +2,10 @@
 tags: #feature #compliance #b2b
 
 Связано:
-- [[Bank Middleware MVP]]
-- [[Settlement Request API]]
+- [[mvp/features/Bank Middleware MVP]]
+- [[mvp/features/Settlement Request API]]
 - [[Audit Trail Console]]
-- [[Риски MVP]]
+- [[mvp/Риски MVP]]
 
 ## Роль
 Даёт понятное представление о том, что settlement flow проверяем и audit-friendly, даже если full ZK compliance в MVP ещё упрощён.
