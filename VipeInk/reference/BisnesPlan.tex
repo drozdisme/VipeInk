@@ -1,0 +1,1996 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setmainfont{DejaVu Serif}[
+BoldFont       = DejaVu Serif Bold,
+ItalicFont     = DejaVu Serif Italic,
+Ligatures      = TeX
+]
+\setsansfont{DejaVu Sans}[
+BoldFont  = DejaVu Sans Bold,
+Ligatures = TeX
+]
+\setmonofont{DejaVu Sans Mono}
+\usepackage[top=2.8cm, bottom=2.8cm, left=3.0cm, right=3.0cm,
+headheight=26pt, includeheadfoot]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xltabular}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{placeins}
+\usepackage{ragged2e}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{mdframed}
+\tcbuselibrary{skins,breakable}
+% ─── Column Types ─────────────────────────────────────────────────────────────
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+% ─── Refined Color Palette ────────────────────────────────────────────────────
+\definecolor{accent}{RGB}{26,54,93}
+\definecolor{accentdark}{RGB}{15,32,60}
+\definecolor{accentlight}{RGB}{44,82,130}
+\definecolor{accentrule}{RGB}{60,100,160}
+\definecolor{lightgray}{RGB}{248,249,250}
+\definecolor{midgray}{RGB}{210,215,220}
+\definecolor{rowalt}{RGB}{244,247,251}
+\definecolor{darkrow}{RGB}{225,234,246}
+\definecolor{warnred}{RGB}{180,35,35}
+\definecolor{okgreen}{RGB}{30,90,40}
+\definecolor{warnyellow}{RGB}{200,140,0}
+\definecolor{insightbg}{RGB}{240,246,255}
+\definecolor{insightborder}{RGB}{26,54,93}
+\definecolor{warningbg}{RGB}{255,251,238}
+\definecolor{warningborder}{RGB}{190,140,30}
+\definecolor{successbg}{RGB}{240,250,242}
+\definecolor{successborder}{RGB}{38,100,48}
+\definecolor{coverdark}{RGB}{10,28,58}
+\definecolor{placeholderbg}{RGB}{255,248,230}
+\definecolor{placeholderborder}{RGB}{200,160,60}
+% ─── Hyperref (Loaded AFTER colors) ───────────────────────────────────────────
+\usepackage[hidelinks,colorlinks=true,linkcolor=accentlight,citecolor=accentlight,urlcolor=accentlight]{hyperref}
+% ─── Typography ───────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setstretch{1.12}
+\graphicspath{{./}}
+\setlength{\emergencystretch}{3em}
+\hfuzz=0.5pt
+\widowpenalty=10000
+\clubpenalty=10000
+\microtypesetup{
+protrusion = true,
+expansion  = false
+}
+% ─── Table settings ───────────────────────────────────────────────────────────
+\renewcommand{\arraystretch}{1.32}
+\setlength{\tabcolsep}{6pt}
+\setlength{\heavyrulewidth}{0.08em}
+\setlength{\lightrulewidth}{0.05em}
+\setlength{\cmidrulewidth}{0.03em}
+\setlength{\aboverulesep}{0.4ex}
+\setlength{\belowrulesep}{0.5ex}
+% ─── Caption style ────────────────────────────────────────────────────────────
+\captionsetup{
+font       = {small, color=accentdark},
+labelfont  = {bf},
+skip       = 4pt,
+position   = top
+}
+% ─── Section headings ─────────────────────────────────────────────────────────
+\titleformat{\section}
+{\large\bfseries\color{accent}\addfontfeatures{LetterSpace=2.5}}
+{\thesection.}{0.55em}{}[{%
+\vspace{2pt}%
+{\color{accentrule}\hrule height 0.35pt}%
+\vspace{2pt}%
+}]
+\titlespacing{\section}{0pt}{18pt plus 4pt minus 2pt}{8pt plus 2pt}
+\titleformat{\subsection}
+{\normalsize\bfseries\color{accentlight}}
+{\thesubsection}{0.55em}{}
+\titlespacing{\subsection}{0pt}{12pt plus 3pt minus 2pt}{4pt plus 1pt}
+% ─── Headers & footers ────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+\small\color{accent}%
+\textbf{VIPEINK}\enspace{\color{midgray}·}\enspace Business Plan\enspace{\color{midgray}—}\enspace Pre-Seed Round%
+}
+\fancyhead[R]{\small\color{gray!80}Confidential\enspace·\enspace March 2026}
+\fancyfoot[C]{\small\color{gray}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{%
+\hbox to\headwidth{\color{accentrule!50}\leaders\hrule height\headrulewidth\hfill}%
+}
+\renewcommand{\footrulewidth}{0pt}
+% ─── Helper commands ──────────────────────────────────────────────────────────
+\newcommand{\tablesource}[1]{%
+\par\vspace{3pt}%
+{\footnotesize\color{gray!80}\textit{Source: #1}}%
+\par\vspace{2pt}%
+}
+\newcommand{\placeholder}[1]{%
+\begin{tcolorbox}[enhanced, breakable, arc=2pt, outer arc=2pt,
+  colback=placeholderbg, colframe=placeholderborder,
+  leftrule=3.5pt, toprule=0.4pt, bottomrule=0.4pt, rightrule=0.4pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt]
+{\small\color{placeholderborder!80!black}\textbf{[TO BE ADDED:}} {\small\color{placeholderborder!60!black}#1\textbf{]}}
+\end{tcolorbox}
+}
+% ─── Callout boxes ────────────────────────────────────────────────────────────
+\tcbset{
+boxbase/.style={
+enhanced, breakable,
+arc              = 2pt,
+outer arc        = 2pt,
+leftrule         = 3.5pt,
+toprule          = 0.4pt,
+bottomrule       = 0.4pt,
+rightrule        = 0.4pt,
+left             = 10pt,
+right            = 10pt,
+top              = 7pt,
+bottom           = 7pt,
+before upper     = {\setlength{\parskip}{4pt}},
+},
+insightbox/.style={
+boxbase,
+colback          = insightbg,
+colframe         = insightborder,
+fonttitle        = \small\bfseries\color{white},
+attach boxed title to top left = {yshift=-2.2mm, xshift=8pt},
+boxed title style = {
+colback   = insightborder,
+colframe  = insightborder,
+arc       = 1.5pt,
+outer arc = 1.5pt,
+left      = 5pt,
+right     = 5pt,
+top       = 2pt,
+bottom    = 2pt,
+}
+},
+warningbox/.style={
+boxbase,
+colback  = warningbg,
+colframe = warningborder,
+},
+successbox/.style={
+boxbase,
+colback  = successbg,
+colframe = successborder,
+},
+keymetric/.style={
+enhanced,
+arc         = 3pt,
+outer arc   = 3pt,
+colback     = accent!6,
+colframe    = accent!40,
+left        = 14pt,
+right       = 14pt,
+top         = 10pt,
+bottom      = 10pt,
+fontupper   = \normalsize,
+before upper = {\setlength{\parskip}{5pt}},
+}
+}
+\begin{document}
+% ─────────────────────────────────────────────────────────────────────────────
+%  COVER PAGE
+% ─────────────────────────────────────────────────────────────────────────────
+\thispagestyle{empty}
+\pagecolor{coverdark}
+\color{white}
+\begin{center}
+\vspace*{1.5cm}
+{\fontsize{52}{58}\selectfont\bfseries\color{white} VIPEINK}\\[0.4em]
+{\large\color{white!75} Next-Generation Tokenized Banking Payment System on TON}
+\vspace{1.5em}
+{\color{white!40}\rule{\linewidth}{0.5pt}}
+\vspace{1.5em}
+{\Large\bfseries Business Plan --- Pre-Seed Round}\\[0.5em]
+{\normalsize\color{white!70} Economic Model v3.1 Stage-Based · March 2026}
+\vspace{2em}
+\begin{minipage}{0.85\linewidth}
+\centering
+{\large\color{white!85}\textit{
+``Settlement finality in 5.2 seconds instead of 4 banking days.\\
+Designed for operational independence after Pre-Seed.\\
+Unit economics turn positive at 10M tx/year --- one bank partner.''
+}}
+\end{minipage}
+\end{center}
+\newpage
+\begin{center}
+\begin{tabular}{@{}p{5cm}p{7.5cm}@{}}
+{\color{white!60}\small Investment ask:}   & {\bfseries\color{white}\large \$1,192,000 Pre-Seed} \\[6pt]
+{\color{white!60}\small Jurisdiction:}     & {\color{white}\small Lithuania (EMI) · EU (MiCA/CASP)} \\[4pt]
+{\color{white!60}\small Blockchain:}       & {\color{white}\small The Open Network (TON)} \\[4pt]
+{\color{white!60}\small Break-even:}       & {\color{white}\small 10M tx/year · 1 bank partner · 6--12 months} \\[4pt]
+{\color{white!60}\small Net margin (Pilot):} & {\bfseries\color{white!90} 59.8\% at 1.65\% fee rate} \\[4pt]
+{\color{white!60}\small Self-funding:}     & {\color{white}\small Designed from first paid pilot (Q1--Q2 2027)} \\[4pt]
+{\color{white!60}\small Instrument:}       & {\color{white}\small SAFE · 20\% discount · cap \$9.4M} \\[4pt]
+\end{tabular}
+\end{center}
+\vfill
+{\color{white!40}\rule{\linewidth}{0.4pt}}
+\vspace{0.6em}
+{\footnotesize\color{white!40}
+Confidential. This document is intended solely for prospective Pre-Seed investors.
+Unauthorized distribution is prohibited.
+}
+\vspace{0.5cm}
+\newpage
+\pagecolor{white}
+\color{black}
+% ─────────────────────────────────────────────────────────────────────────────
+%  INVESTMENT HIGHLIGHTS (NEW — 1-page cold outreach summary)
+% ─────────────────────────────────────────────────────────────────────────────
+\thispagestyle{fancy}
+\section*{INVESTMENT HIGHLIGHTS}
+\addcontentsline{toc}{section}{Investment Highlights}
+\vspace{0.4em}
+
+\begin{tcolorbox}[keymetric]
+\begin{itemize}[leftmargin=1.5em, itemsep=8pt, parsep=0pt]
+\item \textbf{What:} Regulated payment middleware on the TON blockchain that settles interbank transactions in 5.2 seconds via ZK-Rollup, replacing 1--4 day SWIFT correspondent flows for Tier-2/3 banks across the EEA.
+
+\item \textbf{Why Now:} MiCA regulation (2025), ISO 20022 migration (2025--2027) and production-grade ZK cryptography have converged to create a narrow window for compliant blockchain-based settlement infrastructure.
+
+\item \textbf{Ask:} \$1,192,000 SAFE with 20\% discount, \$9.4M valuation cap.
+
+\item \textbf{Use of Funds:} Licenses 56\% · Audits 16\% · Development 12\% · Reserve 16\%.
+
+\item \textbf{Key Metric:} Break-even at 10M tx/year --- equivalent to one Tier-3 bank partner, achievable within 6--12 months of first pilot.
+
+\item \textbf{Path to \$30M ARR:} 2--5 bank partners generating 20--50M tx/year at 1.65\% fee. Net margin 59.8\% at Pilot scale.
+
+\item \textbf{Exit:} 6--30$\times$ over 3--5 years via M\&A (Worldline, Adyen, BNP Paribas, ING) or optional Series A for acceleration.
+
+\item \textbf{Team:} \textit{[TO BE ADDED: key founder names]} --- mathematician/architect, systems engineer, economist/GTM, marketing lead. Four co-founders covering all mission-critical domains from Day 1.
+\end{itemize}
+\end{tcolorbox}
+
+\newpage
+% ─────────────────────────────────────────────────────────────────────────────
+%  TABLE OF CONTENTS
+% ─────────────────────────────────────────────────────────────────────────────
+\thispagestyle{fancy}
+\tableofcontents
+\newpage
+
+% ═════════════════════════════════════════════════════════════════════════════
+\section{EXECUTIVE SUMMARY}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[insightbox, title={Investment Thesis in One Paragraph}]
+\textbf{Vipeink} is building a regulated payment rail on the TON blockchain that reduces interbank settlement time from 4 days to 5.2 seconds and delivers a 59.8\% net margin at the transaction volume of a single bank partner. The \$1.19M Pre-Seed covers EMI+MiCA licensing and all mandatory audits. Every subsequent growth stage is designed to be funded from transaction revenue; Series A is optional, solely for acceleration. For the investor, this means: \textbf{capped capital risk, fixed maximum expenditure, and a 6--30$\times$ exit potential over a 3--5 year horizon}.
+\end{tcolorbox}
+
+\vspace{0.3em}
+
+International interbank settlements are one of the few financial markets where infrastructure has not changed fundamentally since the 1970s. SWIFT MT103 takes 1--4 business days~\cite{swift_mt103}, every node in the chain duplicates KYC/AML checks, and Tier-2/3 banks either overpay correspondent banks or lose fintech clients. Vipeink addresses all four structural defects at the protocol level --- through ZK-Rollup, an atomic ZK+SWIFT Bridge and an embedded compliance layer.
+
+The key fact that distinguishes Vipeink from most fintech startups: \textbf{the business reaches profitability at the volume of a single bank partner}. Break-even is 10 million transactions per year, or 0.3 TPS. That is equivalent to a small regional bank over 6--12 months of operation.
+
+\vspace{0.3em}
+\noindent\textbf{Key financial parameters --- path from Pilot to Regional scale:}
+
+\begin{table}[htbp]
+\centering
+\caption{Financial Model: Pilot to Regional Scale (Economic Model v3.1)}
+\small
+\begin{tabularx}{\linewidth}{@{}lRRR@{}}
+\toprule
+\textbf{Parameter} & \textbf{Break-even} & \textbf{Pilot} & \textbf{Regional} \\
+\midrule
+Volume (tx/year)       & 10M      & 50M       & 1B         \\
+Fixed costs/year       & \$8.54M  & \$8.54M   & \$26.1M    \\
+Revenue (1.65\%)       & \$9.1M   & \$45.4M   & \$907.5M   \\
+Net Profit             & \$0      & \textcolor{okgreen}{\$27.2M} & \textcolor{okgreen}{\$651.7M} \\
+Net Margin             & 0\%      & \textcolor{okgreen}{\textbf{59.8\%}} & \textcolor{okgreen}{\textbf{71.8\%}} \\
+\bottomrule
+\end{tabularx}
+\tablesource{Economic Model v3.1 Stage-Based Scaling, February 2026. National and Global stages are presented in Appendix~B as theoretical ceilings.}
+\end{table}
+
+\vspace{0.4em}
+
+As volume grows, \textbf{net margin increases} (59.8\% $\to$ 71.8\%), whereas in traditional payment systems it typically declines due to operational complexity. This is an architectural consequence: Vipeink's variable costs are \$0.01253/tx and do not scale proportionally with volume.
+
+\vspace{0.6em}
+
+\begin{tcolorbox}[successbox]
+\textbf{Why Pre-Seed is an asset acquisition, not a cash burn.}
+71.68\% of Pre-Seed expenditure (\$854K) consists of fixed government fees and auditor tariffs --- they are independent of operational outcomes. The EMI license capital (\$413K) is a \textit{regulatory asset}: it is held on the company balance sheet as required capital~\cite{lb_emi}. The investor is not funding a startup searching for product-market fit --- they are funding the licensing of an already-designed architecture.
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{PROBLEM AND OPPORTUNITY}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The cross-border B2B payments market --- \$190 trillion per year~\cite{bis_crossborder,mckinsey_payments} --- operates on infrastructure that has not changed fundamentally since SWIFT launched in 1973~\cite{swift_history}. Banks and corporations tolerate delays, duplicate compliance checks and high fees not because they are unaware of alternatives, but because no alternative has yet obtained the necessary regulatory foundation and passed banking-grade audits. Vipeink closes exactly that gap.
+
+\subsection*{Four Structural Defects We Address}
+
+\begin{enumerate}[leftmargin=2em, itemsep=7pt, parsep=0pt]
+\item \textbf{Speed.} SWIFT MT103 takes 1--4 business days~\cite{swift_mt103} --- from 86,400 to 345,600 seconds. Vipeink settles in \textbf{5.2 seconds}. For a corporate treasurer, this means the shift from ``funds stuck for a week'' to ``funds arrived before the call ended.''
+
+\item \textbf{Cost.} The all-in client fee at Visa is 1.65--2.90\%~\cite{visa_ar}; PayPal charges 2.90\% with variable costs of \$0.075/tx~\cite{paypal_ar}. Vipeink's variable cost is \$0.01253/tx. At scale, this enables a fee \textbf{below Visa} while preserving a 73\%+ margin.
+
+\item \textbf{Compliance duplication.} Every node in the correspondent chain runs its own KYC/AML check. The industry spends \$40+ billion per year on this~\cite{mckinsey_aml,lexisnexis_aml} --- and still misses violations because each participant sees only its own fragment of the transaction. Vipeink embeds compliance into a ZK-proof: \textit{once, at the protocol level}, with mathematically provable correctness~\cite{fatf_aml_tech}.
+
+\item \textbf{Tier-2/3 exclusion.} Banks with assets below \$1 billion lack direct SWIFT membership~\cite{swift_correspondent,bis_correspondent} and pay correspondents a double markup --- or lose fintech clients. This segment (67\% of whose treasurers call correspondent settlement costs ``critically unacceptable'', McKinsey 2024~\cite{mckinsey_2024}) is Vipeink's primary target audience.
+\end{enumerate}
+
+\subsection*{Why the Opportunity Window Opened Now}
+
+The largest infrastructure opportunities arise at the intersection of mature technology, regulatory change, and unmet demand. All three factors have converged in 2025--2026.
+
+\begin{table}[htbp]
+\centering
+\caption{Factors Creating the Market Window for Vipeink}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+\textbf{Factor} & \textbf{Description} & \textbf{Timing} \\
+\midrule
+ISO 20022 migration   & SWIFT infrastructure upgrade creates an insertion point; Vipeink is natively compatible~\cite{swift_iso20022}              & From 2025 \\
+ZK maturity           & Plonky2, Groth16 and TON reached production-grade~\cite{plonky2,groth16,ton_wp} --- commercial product is now buildable            & 2024--2025 \\
+MiCA + AMLD6           & New EU regulatory framework~\cite{mica_reg,amld6} makes embedded ZK-compliance a \textit{competitive advantage}, not an option & 2025 \\
+Demand surge          & 67\% of Tier-2/3 bank treasurers call SWIFT correspondent costs ``critically unacceptable''~\cite{mckinsey_2024}           & Now \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{tcolorbox}[insightbox, title={Investor Insight}]
+Companies entering payment infrastructure during regulatory transitions --- as Stripe did in 2010 at the dawn of online payments~\cite{stripe_s1}, or Wise in 2011 at the shift to open banking~\cite{wise_ar} --- gain a 5--10 year time buffer ahead of incumbent competitors. MiCA 2025~\cite{mica_reg} is the same type of inflection point for B2B crypto-based settlements.
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{SOLUTION: INVISIBLE MIDDLEWARE}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The conceptual foundation of Vipeink is the \textbf{invisible middleware} principle: the bank retains its client, its license and its familiar interface; Vipeink executes the settlement rail ``under the hood'' through a four-layer ZK architecture. From the bank's perspective, this looks like an ordinary API call. Internally, it is a cryptographically proven atomic settlement with 5.2-second finality.
+
+This means \textbf{zero integration barrier for the bank}: no need to change the client interface, retrain staff, or obtain additional licenses. Vipeink connects via REST API to the existing banking system --- the same way any cloud service does.
+
+\subsection*{Four-Layer Architecture}
+
+\begin{table}[htbp]
+\centering
+\caption{Vipeink Architecture: From Intent to Settlement}
+\begin{tabularx}{\linewidth}{@{}p{3.8cm}Xp{3.2cm}@{}}
+\toprule
+\textbf{Layer} & \textbf{Function} & \textbf{Key Guarantee} \\
+\midrule
+\textbf{Intent Layer}     & Encryption of payment intent \{from, to, amount, currency\}; AES-256 & Data privacy \\[4pt]
+\textbf{ZK-Rollup Layer}  & Batch processing via Plonky2~\cite{plonky2}/Groth16~\cite{groth16}; Merkle root anchored to TON blockchain~\cite{ton_wp}  & $P[\text{error}] < 2^{-80}$ \\[4pt]
+\textbf{Settlement Bridge Layer} & Atomic Jetton $\leftrightarrow$ MT103 SWIFT bridge~\cite{swift_mt103}; two-phase commit; 3 watchers (Phase 1) $\to$ 7 watchers (Phase 2) & Either both legs settle or full rollback \\[4pt]
+\textbf{Banking Layer}    & Final SWIFT settlement~\cite{swift_gpi}; REST API integration with the bank            & Complete audit trail \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ─── Architecture Diagram ────────────────────────────────────────────────────
+\vspace{0.6em}
+\begin{figure}[htbp]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  layer/.style={draw=accent, fill=accent!8, rounded corners=3pt, minimum width=12cm, minimum height=1.3cm, font=\small},
+  arrow/.style={->, thick, color=accentlight},
+  label/.style={font=\footnotesize\color{accent}, anchor=west}
+]
+\node[layer] (l4) at (0, 0)   {\textbf{Banking Layer} --- SWIFT MT103 settlement · REST API · Audit trail};
+\node[layer] (l3) at (0, 1.8) {\textbf{Settlement Bridge} --- Atomic Jetton $\leftrightarrow$ SWIFT · 2-phase commit · Watcher rollback};
+\node[layer] (l2) at (0, 3.6) {\textbf{ZK-Rollup Layer} --- Plonky2/Groth16 · Merkle root $\to$ TON · Compliance proofs};
+\node[layer] (l1) at (0, 5.4) {\textbf{Intent Layer} --- Encrypted payment intent · AES-256 · k-anonymity};
+
+\draw[arrow] (l1.south) -- (l2.north) node[midway, right, label] {ZK batch};
+\draw[arrow] (l2.south) -- (l3.north) node[midway, right, label] {Proof + anchor};
+\draw[arrow] (l3.south) -- (l4.north) node[midway, right, label] {Atomic settle};
+
+\node[font=\footnotesize\color{gray}, anchor=west] at (-6.5, 6.2) {Bank API call};
+\draw[->, thick, color=gray] (-6.5, 6.0) -- (-6.5, 5.4) -- (l1.west);
+\node[font=\footnotesize\color{gray}, anchor=west] at (4.5, -0.9) {SWIFT network};
+\draw[->, thick, color=gray] (l4.east) -- (6.5, 0) -- (6.5, -0.6);
+\end{tikzpicture}%
+}% end resizebox
+\caption{Vipeink Four-Layer Architecture (simplified)}
+\end{figure}
+\vspace{0.2em}
+
+\subsection*{Formal Security Guarantees}
+
+Unlike most blockchain projects, where security is described qualitatively, Vipeink possesses \textbf{30+ mathematically proven theorems} (Technical Specification v4.0). Key reliability parameters:
+
+\begin{itemize}[leftmargin=2em, itemsep=3pt, parsep=0pt]
+\item $P[\text{partial execution}] < 2^{-80}$ --- atomicity of settlement guaranteed at the cryptographic level;
+\item $P[\text{tx fails}] < 10^{-12}$ --- the probability of a transaction failure is negligibly small;
+\item $P[\text{DAS attack}] < 10^{-150}$ --- resistance to data availability attacks~\cite{zk_rollups};
+\item $k \geq 3$ --- k-anonymity of client payment data.
+\end{itemize}
+
+These parameters are verifiable mathematical statements, not marketing claims. They are precisely what enables passing banking audits and regulatory reviews.
+
+\begin{table}[htbp]
+\centering
+\caption{Product Components: Pre-Seed vs Phase 2}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+\textbf{Component} & \textbf{Description and value} & \textbf{Phase} \\
+\midrule
+ZK-Rollup core (Plonky2)~\cite{plonky2}    & Batch processing; Merkle commitment; TON anchoring~\cite{ton_docs} --- protocol foundation         & \textbf{Pre-Seed} \\
+SWIFT MT103 Bridge~\cite{swift_mt103}          & Two-phase commit; watcher system (3 nodes in Phase 1)                             & \textbf{Pre-Seed} \\
+Compliance Layer (basic)    & ZK-attested AML/KYC via Chainalysis/Sumsub API~\cite{fatf_aml_tech}                                      & \textbf{Pre-Seed} \\
+Banking API                 & REST integration with bank; full audit trail; 1--2 banks                          & Phase 1 \\
+ATM KYC Module              & ZK-KYC for ATM networks; k-anonymity                                              & Phase 2 \\
+Proof Marketplace           & Decentralized ZK-proof generation marketplace; targets 40\%+ cost reduction              & Phase 2 \\
+Dynamic Sharding (DynShard) & TON-native sharding~\cite{ton_docs}; 1,000+ TPS                                           & Phase 2 \\
+Multi-currency Settlement   & Jetton swaps; TWAP oracle; multi-currency corridors                               & Phase 2--3 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{MARKET}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\subsection*{TAM / SAM / SOM}
+
+Cross-border B2B payments are one of the largest and least technologically optimized financial markets. Vipeink deliberately focuses on the segment with maximum pain and minimum competition: Tier-2/3 banks across the EEA.
+
+\begin{table}[htbp]
+\centering
+\caption{Vipeink Addressable Market}
+\begin{tabularx}{\linewidth}{@{}llXr@{}}
+\toprule
+\textbf{Level} & \textbf{Segment} & \textbf{Description} & \textbf{Size} \\
+\midrule
+TAM & Total market    & Global cross-border B2B payments~\cite{bis_crossborder,mckinsey_payments}                         & \$190 tn/year \\
+SAM & Target market  & B2B cross-border through Tier-2/3 banks (EEA)~\cite{ecb_payments,bis_crossborder}             & \$8.5 tn/year \\
+SOM & 3-year capture & 2--5 banks, 5--30M tx/year (0.003--0.02\% of SAM)\footnote{Based on average ticket size assumption of \$55 for SME B2B payments.}          & \$5--30M ARR (at 165 bps fee)  \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Why SOM is realistic.} One Tier-3 bank generates an estimated 5--50M transactions per year (see assumption basis in Section~\ref{sec:financial_calibration}). At 30M tx and a 1.65\% fee, Vipeink's revenue is \$27.2M. Reaching SOM requires 2--5 banks over 3 years --- while negotiations with the first bank begin in parallel with licensing from Month 1. A 0.003--0.02\% capture rate of SAM is an intentionally conservative estimate.
+
+\subsection*{Market Dynamics}
+
+The blockchain-based B2B payments segment is growing approximately 6$\times$ faster than the overall cross-border payments market. ZK infrastructure as a standalone category is among the fastest-growing segments of fintech infrastructure.
+
+\begin{table}[htbp]
+\centering
+\caption{Target Market Growth Dynamics}
+\small
+\begin{tabularx}{\linewidth}{@{}Lrr@{}}
+\toprule
+\textbf{Segment} & \textbf{Size 2025} & \textbf{CAGR 2025--2030} \\
+\midrule
+Global cross-border payments (total)~\cite{bis_crossborder,mckinsey_payments}               & \$190 tn   & +7.3\%  \\
+B2B cross-border payments within EEA (SAM)~\cite{ecb_payments,capgemini_wpr}                & \$8.5 tn   & +6.8\%  \\
+\textbf{Blockchain-based B2B payments}~\cite{mm_blockchain}             & \$0.9 tn   & \textbf{+43.2\%} \\
+\textbf{ZK-proof infrastructure}~\cite{gvr_zkproof}                  & \$1.2 bn   & \textbf{+68\%}   \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Competitive Analysis: Traditional Payment Systems}
+
+The table below compares Vipeink against incumbent payment rails. These are not direct competitors (they operate in different segments) but serve as margin and cost benchmarks.
+
+\begin{table}[htbp]
+\centering
+\caption{Payment System Comparison at National Scale (6B tx/year) --- Benchmarks}
+\footnotesize
+\rowcolors{2}{rowalt}{white}
+\begin{tabularx}{\linewidth}{@{}lCCCCC@{}}
+\toprule
+\textbf{System} & \textbf{Fee} & \textbf{Var.cost/tx} & \textbf{EBITDA\%}\footnote{Vipeink EBITDA includes fixed opex; Competitors use standard reporting.} & \textbf{Net\%} & \textbf{Settlement} \\
+\midrule
+Visa~\cite{visa_ar}                    & 1.65\% & \$0.0029  & 87.3\% & 65.5\%                & 1--4 days \\
+Mastercard~\cite{mc_ar}              & 1.72\% & \$0.0039  & 87.1\% & 65.4\%                & 1--4 days \\
+PayPal~\cite{paypal_ar}                  & 2.90\% & \$0.0751  & 71.4\% & 53.6\%                & min--hours \\
+Stripe~\cite{stripe_pricing,stripe_financial}                  & 2.90\% & \$0.0453  & 68.4\% & 51.3\%                & T+1 \\
+\textbf{Vipeink (at 1.65\%)} & 1.65\% & \$0.0125  & \textbf{97.4\%} & \textbf{73.1\%} & \textbf{5.2 sec} \\
+\bottomrule
+\end{tabularx}
+\rowcolors{0}{}{}
+\tablesource{Economic Model v3.1; public company reports \cite{visa_ar,mc_ar,paypal_ar,stripe_pricing}.}
+\end{table}
+
+\subsection*{Direct Competitors in Blockchain-Based Settlement}
+
+No existing player combines ZK-compliance, SWIFT compatibility and an EU EMI license. However, several well-funded initiatives operate in adjacent or overlapping spaces:
+
+\begin{table}[htbp]
+\centering
+\caption{Direct Competitors in Blockchain-Based Interbank Settlement}
+\footnotesize
+\rowcolors{2}{rowalt}{white}
+\begin{tabularx}{\linewidth}{@{}p{2.2cm}p{1.5cm}Xp{3.5cm}@{}}
+\toprule
+\textbf{Player} & \textbf{Status} & \textbf{Focus \& Approach} & \textbf{Limitation vs Vipeink} \\
+\midrule
+\textbf{Partior} (JPMorgan, DBS, Temasek)~\cite{partior} & Live (pilot) & Multi-currency clearing for Tier-1 banks; permissioned blockchain; focuses on intraday FX settlement & Tier-1 only; no Tier-2/3 access; no ZK-compliance; no EU EMI license; consortium governance limits agility \\[4pt]
+\textbf{Fnality} (15+ bank consortium)~\cite{fnality} & Pilot & Tokenized central bank money (USC) for wholesale settlement & Requires central bank participation; limited to consortium members; no retail/SME path; years from commercial launch \\[4pt]
+\textbf{R3 Corda}~\cite{r3_corda} & Live (platform) & Enterprise DLT platform; used by banks for trade finance and settlements & Platform, not a settlement product; banks must build on top; no embedded compliance; no SWIFT bridge \\[4pt]
+\textbf{Canton Network} (Digital Asset, Goldman Sachs)~\cite{canton_network} & Beta & Privacy-preserving smart contracts for institutional finance; Daml language & Early stage; focused on capital markets, not payments; no EMI/payment license strategy \\[4pt]
+\textbf{Circle (USDC)}~\cite{circle} & Live & Stablecoin infrastructure for B2B payments; growing USDC adoption in cross-border flows & USD-denominated only; no SWIFT bridge; regulatory status varies by jurisdiction; no ZK-privacy layer \\
+\bottomrule
+\end{tabularx}
+\rowcolors{0}{}{}
+\tablesource{Company disclosures, press releases, and analyst reports as of Q1 2026.}
+\end{table}
+
+\subsection*{Why Vipeink Wins Against Direct Competitors}
+
+Vipeink occupies a unique position at the intersection of four capabilities that no competitor currently combines:
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt, parsep=0pt]
+\item \textbf{ZK-embedded compliance.} Partior, Fnality and R3 Corda rely on traditional compliance workflows. Vipeink bakes AML/KYC into the settlement proof itself --- reducing per-transaction compliance cost and enabling mathematical auditability.
+\item \textbf{SWIFT MT103 bridge.} No blockchain settlement platform offers atomic interoperability with the existing SWIFT network. Vipeink's bridge means banks do not need to abandon existing infrastructure --- they extend it.
+\item \textbf{EU EMI license path.} Consortium projects (Partior, Fnality) operate under member banks' licenses. Vipeink holds its own EMI license, enabling direct commercial relationships with any EEA bank and EU-wide passporting under MiCA.
+\item \textbf{Tier-2/3 accessibility.} Consortium solutions are designed for Tier-1 institutions. Vipeink specifically targets the underserved 67\% of Tier-2/3 treasurers who find correspondent costs unacceptable~\cite{mckinsey_2024} --- a segment that consortium players structurally cannot serve.
+\end{enumerate}
+
+
+\subsection*{SWOT Analysis}
+
+\begin{table}[htbp]
+\centering
+\caption{SWOT Analysis}
+\begin{tabularx}{\linewidth}{@{}p{2.2cm}X@{}}
+\toprule
+\multicolumn{2}{@{}l}{\textbf{Strengths}} \\
+\midrule
+S1 & Break-even at 10M tx/year (0.3 TPS) --- achievable with one bank partner in 6--12 months \\
+S2 & Net margin 59.8\% at 50M tx --- higher than most payment systems at any scale~\cite{visa_ar,mc_ar,paypal_ar} \\
+S3 & Formally verified architecture (30+ theorems, Technical Spec v4.0) \\
+S4 & Mathematician + engineer + economist + marketer in the core team from day one \\
+S5 & Designed for operational independence from external capital after Pre-Seed \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Weaknesses}} \\
+\midrule
+W1 & Compliance cost = \$0.0083/tx (66.2\% of var.\ costs) --- Phase 2 optimization priority \\
+W2 & No track record: whitepaper exists, but a live bridge with a real bank does not \\
+W3 & Long bank sales cycle: 4--9 months before first revenue \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Opportunities}} \\
+\midrule
+O1 & ISO 20022 migration 2027~\cite{swift_iso20022} creates an insertion point for alternative settlement rails \\
+O2 & MiCA license~\cite{mica_reg} grants EU-wide passporting rights across all 27 EU member states \\
+O3 & Proof Marketplace potential: additional revenue from external prover operators \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Threats}} \\
+\midrule
+T1 & EMI license delay (up to 18 months)~\cite{lb_emi}: mitigation --- specialized legal adviser \\
+T2 & Tier-1 banks may build their own ZK rail: barrier --- 3--5 years of development + licensing \\
+T3 & New EU regulatory requirements: DORA ICT~\cite{dora_reg} + ISO 27001~\cite{iso27001} provide an adaptive compliance buffer \\
+T4 & Consortium competitors (Partior, Fnality) could expand to Tier-2/3 --- barrier: governance complexity and 2--3 year timeline \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{MARKET VALIDATION}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\subsection*{Customer Discovery}
+
+The following interview summaries are composite reconstructions based on published industry data (McKinsey 2024~\cite{mckinsey_2024}, ECB Payment Statistics 2023~\cite{ecb_payments}, bank annual reports, and structured conversations with industry participants at Money 20/20 Europe and EBAday events). They do not represent verbatim transcripts. Formal customer discovery interviews are scheduled for Q1--Q2 2026, concurrent with EMI filing.
+
+\begin{tcolorbox}[boxbase, colback=white, colframe=accent!30]
+\textbf{Bank A --- Tier-3, Lithuania, \euro 0.6B assets, est.\ 8M cross-border tx/year}\\[4pt]
+\textit{Respondent: Head of Treasury}\\[4pt]
+\textbf{Key findings:}
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt, parsep=0pt]
+\item \textit{Current correspondent cost:} 25--35 bps per cross-border transaction, paid to a Nordic correspondent. Source: consistent with McKinsey 2024 estimate of 20--40 bps for Tier-3 banks~\cite{mckinsey_2024}.
+\item \textit{Settlement delay impact:} 2--3 day settlement delay causes approximately \euro 1.2M in locked liquidity per month, forcing the treasury to maintain excess reserves that reduce return on equity by an estimated 15--20 bps.
+\item \textit{Blockchain readiness:} ``Would consider a pilot if the provider holds an EMI license, passes a recognized smart-contract audit, and demonstrates regulatory sandbox approval. Board requires at least one reference case from a comparable institution.''
+\item \textit{Primary objection:} Regulatory uncertainty --- the bank's compliance department requires clear guidance from the Bank of Lithuania on the treatment of blockchain-based settlement under existing prudential rules.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxbase, colback=white, colframe=accent!30]
+\textbf{Bank B --- Tier-2, Estonia, \euro 3.8B assets, est.\ 22M cross-border tx/year}\\[4pt]
+\textit{Respondent: Chief Financial Officer}\\[4pt]
+\textbf{Key findings:}
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt, parsep=0pt]
+\item \textit{Current correspondent cost:} 18--25 bps, lower than smaller peers due to volume-based pricing with a major European correspondent. Source: derived from ECB Payment Statistics and annual report disclosures~\cite{ecb_payments}.
+\item \textit{Settlement delay impact:} 1--4 day delays create operational friction in trade finance; estimated cost of \euro 3.5M per year in working capital inefficiency and client complaints.
+\item \textit{Blockchain readiness:} Active fintech partnership program; has previously tested DLT solutions in sandbox. ``If the solution integrates via standard REST API and does not require changes to our core banking system, we could move to PoC within 8 weeks of NDA signing.''
+\item \textit{Primary objection:} Counterparty risk --- who absorbs the loss if the bridge fails mid-settlement? Requires contractual clarity on liability allocation and insurance coverage.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxbase, colback=white, colframe=accent!30]
+\textbf{Bank C --- Tier-3, Latvia, \euro 1.2B assets, est.\ 10M cross-border tx/year}\\[4pt]
+\textit{Respondent: Head of Payments}\\[4pt]
+\textbf{Key findings:}
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt, parsep=0pt]
+\item \textit{Current correspondent cost:} 30--40 bps, among the highest in the Baltic segment. Source: consistent with BIS correspondent banking cost data for smaller institutions~\cite{bis_correspondent}.
+\item \textit{Settlement delay impact:} Losing fintech clients to Wise Business and Airwallex due to inability to offer same-day settlement. Estimated revenue leakage: \euro 0.8M per year.
+\item \textit{Blockchain readiness:} ``Blockchain is not a dirty word for us, but our board requires that the technology be invisible to the regulator --- meaning full audit trail, standard reporting, and no change in how we file regulatory returns.''
+\item \textit{Primary objection:} Integration complexity --- the bank runs a legacy core system (Temenos T24~\cite{temenos_ar}) and is concerned about API compatibility and maintenance burden.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxbase, colback=white, colframe=accent!30]
+\textbf{Bank D --- Tier-3, Poland, \euro 2.0B assets, est.\ 12M cross-border tx/year}\\[4pt]
+\textit{Respondent: Head of Treasury}\\[4pt]
+\textbf{Key findings:}
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt, parsep=0pt]
+\item \textit{Current correspondent cost:} 20--30 bps, primarily for EUR and USD corridors via a German correspondent. Source: McKinsey segment data~\cite{mckinsey_2024}.
+\item \textit{Settlement delay impact:} 3-day average settlement delay causes \euro 2.1M per month in liquidity lock for the bank's SME trade finance portfolio, which represents 35\% of cross-border volume.
+\item \textit{Blockchain readiness:} ``We are mandated by our parent group to evaluate all ISO 20022-compatible settlement solutions by Q4 2026~\cite{swift_iso20022}. If your solution passes our vendor due diligence process, it would be reviewed alongside traditional alternatives.''
+\item \textit{Primary objection:} Group compliance --- the bank is part of a larger financial group; any new settlement provider must be approved by the group's compliance committee, adding 3--4 months to the decision timeline.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[boxbase, colback=white, colframe=accent!30]
+\textbf{Bank E --- Tier-3, Sweden, \euro 1.5B assets, est.\ 7M cross-border tx/year}\\[4pt]
+\textit{Respondent: CTO}\\[4pt]
+\textbf{Key findings:}
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt, parsep=0pt]
+\item \textit{Current correspondent cost:} 22--28 bps, relatively efficient due to Nordic correspondent network. Source: ECB payment statistics~\cite{ecb_payments} adjusted for Nordic corridor data.
+\item \textit{Settlement delay impact:} Less acute for this bank; primary pain point is compliance cost rather than speed. AML/KYC for cross-border flows costs an estimated \euro 1.8M per year.
+\item \textit{Blockchain readiness:} ``Speed is nice, but what would actually move our board is a demonstrated reduction in per-transaction compliance cost. If your ZK-compliance layer can reduce our AML screening cost by 30\%+, that is a compelling case regardless of settlement speed.''
+\item \textit{Primary objection:} Proof of compliance equivalence --- the Swedish FSA (Finansinspektionen) has not issued guidance on ZK-proof-based compliance attestations; the bank needs regulatory comfort before proceeding.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection*{Pipeline Status}
+
+\begin{table}[htbp]
+\centering
+\caption{Bank Pipeline Status (as of March 2026)}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}lp{3cm}lrll@{}}
+\toprule
+\textbf{Status} & \textbf{Bank} & \textbf{Tier} & \textbf{Est.\ tx/year} & \textbf{Region} & \textbf{Expected PoC} \\
+\midrule
+NDA In Prep. & \v{S}iauli\k{u} Bankas\footnote{Lithuania's third-largest bank by assets (\euro 6.1B, 2023 AR); strong SME lending and cross-border trade finance in the Baltic corridor; publicly committed to digital transformation.} & Tier-2 & 15--25M & Lithuania & Q3 2026 \\
+NDA In Prep. & LHV Pank\footnote{Estonia's largest independent bank (\euro 5.4B assets, 2023 AR); serves 200{,}000+ business clients; actively partners with fintechs and holds a reputation as the most fintech-friendly bank in the Baltics.} & Tier-2 & 20--35M & Estonia & Q3 2026 \\
+\midrule
+In Contact & Citadele Banka\footnote{Latvia's third-largest bank (\euro 4.2B assets); significant Baltic--Nordic trade finance flows; underwent digital transformation under new ownership (Ripplewood/CDC) since 2015.} & Tier-2 & 12--20M & Latvia & Q4 2026 \\
+In Contact & Inbank AS\footnote{Estonian-headquartered cross-border digital bank (\euro 1.1B assets, 2023 AR); operates in 7 European markets; growth-oriented with strong technology focus.} & Tier-3 & 5--12M & Estonia & Q4 2026 \\
+In Contact & Kredyt Bank (Bank Pocztowy)\footnote{Polish postal bank (\euro 2.1B assets); serves SME segment with growing cross-border needs; undergoing digital modernization program announced in 2024.} & Tier-3 & 8--15M & Poland & Q1 2027 \\
+\midrule
+Target & Bigbank AS\footnote{Estonian cross-border consumer and SME lender (\euro 2.0B assets, 2023 AR); operates in 6 EU countries; high cross-border transaction volume relative to asset size.} & Tier-3 & 8--18M & Estonia & Q1 2027 \\
+Target & Medicinos Bankas\footnote{Specialized Lithuanian bank (\euro 0.5B assets); niche SME and healthcare sector focus; small enough to benefit disproportionately from reduced correspondent costs.} & Tier-3 & 3--8M & Lithuania & Q1 2027 \\
+Target & ProCredit Bank Bulgaria\footnote{Part of ProCredit Group (Frankfurt-listed); Bulgarian subsidiary (\euro 1.0B assets); focused on SME cross-border trade finance in Southeast Europe.} & Tier-3 & 5--12M & Bulgaria & Q1--Q2 2027 \\
+Target & TF Bank AB\footnote{Swedish niche bank (\euro 1.8B assets, 2023 AR); operates cross-border consumer and SME lending in Nordics and Baltics; digital-first model.} & Tier-3 & 6--14M & Sweden & Q1--Q2 2027 \\
+Target & Collector Bank AB\footnote{Swedish specialized bank (\euro 1.3B assets); cross-border SME factoring and trade finance; publicly stated interest in payment innovation in 2024 annual report.} & Tier-3 & 4--10M & Sweden & Q2 2027 \\
+\bottomrule
+\end{tabularx}
+\tablesource{Bank assets from 2023 Annual Reports; transaction volume estimates based on ECB Payment Statistics 2023~\cite{ecb_payments} and bank public disclosures. Pipeline status reflects outreach as of March 2026.}
+\end{table}
+
+\subsection*{Letters of Intent}
+
+No LOIs have been signed as of the date of this document. This is expected and structural: EU banks do not sign commercial agreements --- including non-binding LOIs --- with unlicensed payment operators. The EMI filing (targeted Q1 2026) is a prerequisite for formal engagement.
+
+\textbf{Expected timeline for LOI:} Q2--Q3 2026, concurrent with EMI application review. At that stage, banks can engage at the NDA and PoC Agreement level, which Vipeink treats as a functional equivalent of an LOI for pipeline tracking purposes.
+
+\begin{tcolorbox}[insightbox, title={Why No LOI Is Normal at This Stage}]
+In regulated B2B payments, customer commitment follows licensing, not the other way around. Stripe had zero bank LOIs when it raised its seed round in 2010~\cite{stripe_s1}; Wise launched without formal bank partnerships~\cite{wise_ar}. The relevant validation at Pre-Seed is: (a) the pain point is confirmed by industry data~\cite{mckinsey_2024}, (b) a credible licensing path exists, and (c) the team has begun outreach. All three conditions are met.
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{BUSINESS MODEL AND MONETIZATION}
+% ═════════════════════════════════════════════════════════════════════════════
+
+Vipeink monetizes payment infrastructure through three mutually reinforcing revenue streams. The primary one --- the transaction fee --- has a flywheel effect: more transactions $\to$ more data for ML-AML $\to$ lower compliance cost $\to$ ability to lower fees $\to$ more bank partners $\to$ more transactions again.
+
+\begin{table}[htbp]
+\centering
+\caption{Revenue Streams}
+\begin{tabularx}{\linewidth}{@{}llXr@{}}
+\toprule
+\textbf{Stream} & \textbf{Type} & \textbf{Mechanics} & \textbf{Rate} \\
+\midrule
+Transaction fee       & Revenue share  & \% of transaction amount routed through Vipeink    & 0.5--2.9\%   \\
+Platform license      & Subscription   & Monthly fee for API access + SLA                   & \$5--50K/mo  \\
+Integration fee       & One-time       & Setup + custom integration with the bank            & \$20--80K    \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Pricing Strategy: From High Rates to Disruption}
+
+In the early Pilot stage, Vipeink sets fees at 1.65--2.9\% --- in line with Visa~\cite{visa_ar}/Stripe~\cite{stripe_pricing}, which is a conservative positioning given the value proposition (5.2 sec vs 4 days~\cite{swift_mt103}). As volume grows, fees decrease, making Vipeink increasingly competitive on price.
+
+\begin{table}[htbp]
+\centering
+\caption{Pricing Strategy by Scaling Stage}
+\small
+\begin{tabularx}{\linewidth}{@{}llrrX@{}}
+\toprule
+\textbf{Stage} & \textbf{Volume} & \textbf{Fee} & \textbf{Min fee (10\% margin)\footnote{Calculated to ensure 10\% net margin at Pilot volume, including fixed cost allocation.}} & \textbf{Positioning} \\
+\midrule
+Pilot    & 10--50M tx/year  & 1.65--2.9\% & 0.385\% & In line with Visa/Stripe~\cite{visa_ar,stripe_pricing} \\
+Regional & 50M--1B tx/year  & 0.5--1.65\% & 0.100\% & Below Visa~\cite{visa_ar} \\
+National & 1B--6B tx/year   & 0.3--1.0\%  & 0.100\% & Market disruption \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{P\&L by Stage (Pilot to Regional)}
+
+\begin{table}[htbp]
+\centering
+\caption{P\&L: Pilot to Regional (1.65\% fee rate)}
+\footnotesize
+\rowcolors{2}{rowalt}{white}
+\begin{tabularx}{\linewidth}{@{}lRRRRL@{}}
+\toprule
+\textbf{Stage} & \textbf{tx/year} & \textbf{Fixed/year} & \textbf{Revenue} & \textbf{Net Profit}\footnote{Effective tax rate $\sim$25\% applied (Lithuania CIT 15\% + adjustments).} & \textbf{Net\%} \\
+\midrule
+Break-even     & 10M  & \$8.54M  & \$9.1M   & \$0                            & 0\%   \\
+Pilot (1.65\%) & 50M  & \$8.54M  & \$45.4M  & \textcolor{okgreen}{\$27.2M}   & \textcolor{okgreen}{59.8\%} \\
+Pilot (2.9\%)  & 50M  & \$8.54M  & \$79.8M  & \textcolor{okgreen}{\$52.9M}   & \textcolor{okgreen}{66.4\%} \\
+Regional       & 1B   & \$26.1M  & \$907.5M & \textcolor{okgreen}{\$651.7M}  & \textcolor{okgreen}{71.8\%} \\
+\bottomrule
+\end{tabularx}
+\rowcolors{0}{}{}
+\tablesource{Economic Model v3.1 Stage-Based Scaling, February 2026. National/Global stages in Appendix~B.}
+\end{table}
+
+\subsection*{Unit Economics: One Tier-3 Bank Partner}
+\label{sec:financial_calibration}
+
+The unit of measurement that makes the model concrete: what does \textit{one} Tier-3 bank generate?
+
+\textbf{Volume assumption basis.} A Tier-3 EEA bank with \$0.5--1B in assets and a cross-border focus typically processes 5--50M payment transactions per year. The wide range reflects variation in business mix: a Baltic trade-finance bank may be at 30--50M, while a Nordic niche lender may be at 5--15M. The base case (50M) represents the upper end and should be understood as an optimistic but plausible anchor. A probability-weighted view:
+
+\begin{table}[htbp]
+\centering
+\caption{Transaction Volume Scenarios for One Tier-3 Bank Partner}
+\begin{tabularx}{\linewidth}{@{}lrrX@{}}
+\toprule
+\textbf{Scenario} & \textbf{tx/year} & \textbf{Probability\footnote{Subjective probability estimates based on team's analysis of EEA Tier-3 bank profiles.}} & \textbf{Annual Revenue (1.65\%)} \\
+\midrule
+Conservative  & 10M  & 30\%  & \$9.1M   \\
+Base          & 30M  & 45\%  & \$27.2M  \\
+Optimistic    & 50M  & 25\%  & \$45.4M  \\
+\midrule
+\textbf{Probability-weighted} & \textbf{26.5M} & 100\% & \textbf{\$24.1M} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{tcolorbox}[boxbase, colback=insightbg, colframe=insightborder]
+\textbf{Transaction Volume Assumption Basis}\\[4pt]
+{\small
+\textbf{Step 1: Total cross-border payments in the Baltics and Nordics.} According to ECB Payment Statistics 2023~\cite{ecb_payments}, the combined Baltic states (Lithuania, Latvia, Estonia) processed approximately 180 million cross-border credit transfers per year. The Nordic countries (Finland, Sweden) contribute an additional estimated 350 million cross-border transactions in the SME/corporate segment~\cite{bis_crossborder}.
+
+\textbf{Step 2: Number of Tier-2/3 banks in the region.} The ECB banking supervision data identifies approximately 45--60 credit institutions with assets between \euro 0.3B and \euro 5B across the Baltic and Nordic markets~\cite{ecb_payments}. Approximately 25--35 of these have significant cross-border B2B activity (trade finance, correspondent banking, SME payments).
+
+\textbf{Step 3: Average per bank.} Total Baltic cross-border transactions (180M) divided by the number of active Tier-2/3 banks in the Baltics ($\approx$15) yields an average of approximately 12M tx/year per bank. For the broader Baltic--Nordic corridor with larger banks, the range extends to 20--35M tx/year for Tier-2 institutions.
+
+\textbf{Step 4: Comparison with model range.} The 10--50M range used in the scenario table is consistent with this derivation:
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt, parsep=0pt]
+\item \textbf{10M (conservative):} A small Tier-3 bank with limited cross-border activity --- below the Baltic average.
+\item \textbf{30M (base):} A mid-size Tier-2/3 bank with active trade finance operations --- at or above the Baltic average, consistent with the profile of our pipeline targets.
+\item \textbf{50M (optimistic):} A larger Tier-2 bank with significant Nordic--Baltic corridor activity, or a bank that consolidates cross-border flows from multiple subsidiary entities.
+\end{itemize}
+
+\textit{Sources: ECB Payment Statistics 2023~\cite{ecb_payments}; BIS CPMI Cross-border Payments Data~\cite{bis_crossborder}; McKinsey Global Payments Report 2024~\cite{mckinsey_2024}. Individual bank volumes estimated from annual report disclosures where available.}
+}
+\end{tcolorbox}
+
+\begin{table}[htbp]
+\centering
+\caption{Unit Economics --- One Bank Partner (probability-weighted 26.5M tx/year)}
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+\toprule
+\textbf{Item} & \textbf{Value} \\
+\midrule
+Transaction revenue (1.65\% avg, \$55 avg ticket)  & \$24.1M/year \\
+Platform license (\$15K/month avg)                      & \$180K/year  \\
+Integration fee (Year 1)                                & \$40K        \\
+\textbf{Total revenue Year 1}                           & \textbf{$\approx$\$24.3M} \\
+\midrule
+Variable costs (26.5M $\times$ \$0.01253)               & \$332K     \\
+Fixed costs (Pilot model)                               & \$8.54M      \\
+\textbf{Net Profit}                                     & \textbf{\$11.6M (47.7\% margin)} \\
+\midrule
+CAC (enterprise B2B, banks)                             & \$50--120K   \\
+LTV (5 years, 10\% churn)                               & \$65M+      \\
+\textbf{LTV / CAC}                                      & \textbf{540$\times$--1,300$\times$} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{LTV/CAC in Context: Enterprise Infrastructure Benchmarks}
+
+LTV/CAC ratios in enterprise banking infrastructure are structurally higher than in consumer SaaS because: (a) bank churn rates are historically below 10\% annually --- banks do not switch infrastructure providers if the system works and passes regulatory checks, and (b) customer acquisition cost is bounded (\$50--120K including legal support, demo, PoC) relative to multi-year contract values.
+
+\begin{table}[htbp]
+\centering
+\caption{LTV/CAC Benchmarks --- Enterprise Banking Infrastructure}
+\begin{tabularx}{\linewidth}{@{}lrrX@{}}
+\toprule
+\textbf{Company} & \textbf{LTV/CAC} & \textbf{Segment} & \textbf{Source} \\
+\midrule
+Temenos~\cite{temenos_ar}    & 80--200$\times$   & Core banking software    & Annual report implied \\
+FIS~\cite{fis_ar}            & 60--150$\times$   & Payment processing       & Analyst estimates \\
+Finastra~\cite{finastra_ar}  & 50--120$\times$   & Trade finance / lending  & Rating agency data \\
+\textbf{Vipeink (est.)}      & \textbf{540--1,300$\times$} & Settlement middleware & Economic Model v3.1 \\
+\bottomrule
+\end{tabularx}
+\tablesource{Public filings, analyst reports~\cite{pitchbook}. Vipeink estimates based on probability-weighted unit economics.}
+\end{table}
+
+Vipeink's LTV/CAC is higher than peers because the per-transaction revenue model (vs. license-based) generates proportionally more lifetime value from high-volume bank clients. This reflects the structural economics of transaction-based infrastructure, not an error in calculation. That said, actual ratios will depend on realized transaction volumes and churn rates, which remain unvalidated at this stage.
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{OPERATING MODEL AND GO-TO-MARKET STRATEGY}
+% ═════════════════════════════════════════════════════════════════════════════
+
+Vipeink follows the \textbf{``license before sales''} principle: commercial activity begins only after obtaining EMI and MiCA/CASP licenses~\cite{lb_emi,mica_reg}. This is a deliberate choice that delays time-to-first-revenue but eliminates regulatory risk permanently. No bank partner in the EU will sign a commercial agreement with an unlicensed operator.
+
+\subsection*{Pre-Seed (Months 0--12, Q1 2026--Q1 2027): Regulatory Foundation}
+
+Pre-Seed is the phase of building the infrastructure of trust. Simultaneously with licensing, ZK-core development proceeds and, critically, \textit{bank negotiations begin}. By the time the license is received, the first bank partner is already in the NDA/PoC stage.
+
+\begin{enumerate}[leftmargin=2em, itemsep=5pt, parsep=0pt]
+\item \textbf{EMI License (Bank of Lithuania)~\cite{lb_emi}:} Timeline 6--12 months. License presence is a mandatory condition for any EU bank partner. The \$413K capital is a regulatory asset held on balance sheet.
+\item \textbf{MiCA/CASP License~\cite{mica_reg,esma_mica}:} EU-wide passporting across all 27 member states --- enables operation with tokenized assets without additional national approvals.
+\item \textbf{Smart-Contract Audit (CertiK/Quantstamp):} Mandatory requirement of institutional clients; result is published --- increases trust.
+\item \textbf{Penetration Testing (TIBER-EU)~\cite{tiber_eu}:} Part of EMI license requirements and bank partner due diligence.
+\item \textbf{DORA ICT Compliance~\cite{dora_reg}:} Mandatory for EU payment operators from January 2025.
+\item \textbf{ISO 27001~\cite{iso27001}:} Standard requirement in B2B contracts with Tier-1/2 banks.
+\item \textbf{ZK-Core + SWIFT Bridge development~\cite{plonky2,groth16,swift_mt103}:} In parallel with licensing, by a team of 7.
+\end{enumerate}
+
+\subsection*{Go-to-Market Strategy}
+\label{sec:gtm}
+
+\textbf{Ideal First Customer Profile.} Tier-3 bank, Baltics or Nordics, \$0.5--1B in assets, 10--30M cross-border transactions per year, experiencing pain from correspondent banking costs (paying 15--40 bps to correspondents), motivated by MiCA/ISO 20022 compliance upgrades.
+
+\textbf{Channel Strategy.} Four parallel channels, sequenced by expected conversion speed:
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt, parsep=0pt]
+\item \textbf{Advisory board introductions} (highest priority): Ex-treasurer and ex-regulator advisers provide warm introductions to treasury heads at target banks. This bypasses 2--3 months of cold outreach.
+\item \textbf{Conferences:} Money 20/20 Europe (Amsterdam, June 2026), EBAday (European Banking Association, 2026), Nordic Payments Council events. Goal: 10+ qualified conversations per event.
+\item \textbf{Regulator referrals:} Bank of Lithuania actively promotes its jurisdiction to fintechs~\cite{lb_emi} and provides introductions to licensed entities within the ecosystem.
+\item \textbf{Direct outreach:} Targeted LinkedIn/email campaigns to treasury heads and CTO/CIOs at pre-identified banks. Conversion rate assumption: 2--5\% from contact to NDA.
+\end{enumerate}
+
+\textbf{First 3 Banks: 12-Month Funnel Plan.}
+
+\begin{table}[htbp]
+\centering
+\caption{Bank Acquisition Funnel (Month 1--12)}
+\begin{tabularx}{\linewidth}{@{}Lrrrr@{}}
+\toprule
+\textbf{Stage} & \textbf{Q1 2026} & \textbf{Q2 2026} & \textbf{Q3 2026} & \textbf{Q4 2026--Q1 2027} \\
+\midrule
+Awareness (identified targets)   & 20  & 30  & 30  & 30 \\
+Contacted                        & 5   & 15  & 20  & 25 \\
+NDA signed                       & --- & 2   & 3   & 5  \\
+PoC Agreement                    & --- & --- & 1   & 2--3 \\
+Paid Pilot                       & --- & --- & --- & 1 (post-license) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Sales Collateral (prepared by Q2 2026):} 1-page executive summary, sandbox demo environment, compliance architecture one-pager for bank regulators, ROI calculator (customizable per bank's volume).
+
+\subsection*{Bank Sales Cycle (4--9 Months)}
+
+\begin{enumerate}[leftmargin=2em, itemsep=4pt, parsep=0pt]
+\item \textbf{Discovery (4--6 weeks):} NDA + DPA + technical assessment of the bank's compliance requirements~\cite{fatf_rec}. Starts in parallel with licensing.
+\item \textbf{PoC (4--6 weeks):} Sandbox with real data; ZK-compliance demo for the bank's regulator.
+\item \textbf{Paid Pilot (3--6 months):} 1 currency, 1 corridor. Paid from day one. Sufficient to reach break-even.
+\item \textbf{Commercial:} Paid pilot $\to$ commercial contract $\to$ reference case for the next bank.
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\caption{Phases: From Licensing to Scale}
+\small
+\begin{tabularx}{\linewidth}{@{}lXll@{}}
+\toprule
+\textbf{Phase} & \textbf{Status and activities} & \textbf{Period} & \textbf{Funding} \\
+\midrule
+Pre-Seed  & EMI + MiCA filing~\cite{lb_emi,mica_reg}; audits; ZK-core; parallel bank negotiations     & M 0--12 (Q1 2026--Q1 2027)       & \$1.19M \\
+Phase 1   & EMI obtained; MiCA/CASP obtained; first paid pilot; break-even     & M 12--24 (Q1 2027--Q1 2028)      & Transaction revenue \\
+Phase 2   & 2--5 banks; 50M+ tx/year; in-house ML AML                          & M 24--36 (Q1 2028--Q1 2029)      & Self-funding \\
+Growth    & 5--10 banks; Regional scale; Series A optional                     & M 36+ (2029+)                    & Revenue + opt.\ SA \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{TECHNOLOGY}
+% ═════════════════════════════════════════════════════════════════════════════
+
+Full description is in Technical Specification v4.0. Below: business value of components, key security parameters, and blockchain selection rationale.
+
+\begin{table}[htbp]
+\centering
+\caption{Technology Components and Business Value}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+\textbf{Component} & \textbf{Business value for the bank} & \textbf{Guarantee} \\
+\midrule
+ZK-Rollup (Plonky2)~\cite{plonky2}      & Transaction privacy + correctness without exposing client data             & $P < 2^{-80}$ \\
+SWIFT MT103 Bridge~\cite{swift_mt103}       & Atomic settlement: either both legs complete or automatic rollback         & $P < 2^{-80}$ \\
+TON blockchain~\cite{ton_wp,ton_docs}           & Immutable audit trail; verifiable by regulator in real time                & Immutable \\
+Watcher system (3$\to$7 nodes) & Stuck-tx monitoring; automatic rollback in under 4 seconds                & $P < 10^{-12}$ \\
+ZK-Compliance~\cite{fatf_aml_tech}            & Regulator receives a mathematically verified proof without accessing client data & $I \leq \text{negl}(\lambda)$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Cryptographic Parameters (Technical Specification v4.0)}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}lLLr@{}}
+\toprule
+\textbf{Component} & \textbf{Algorithm} & \textbf{Parameters} & \textbf{Security} \\
+\midrule
+ZK-STARK    & Plonky2~\cite{plonky2}       & Goldilocks field, $2^{20}$ constraints           & 128-bit \\
+ZK-SNARK    & Groth16~\cite{groth16}       & BN254, $2^{18}$ gates                            & 128-bit \\
+Bridge MPC  & GG20          & Ed25519, $t{=}3$, $n{=}5$                & 128-bit \\
+Storage     & Reed-Solomon + AES-256 & 7-of-21 erasure coding            & 128-bit \\
+Account Mapper & HMAC-SHA384 & 256-bit key in HSM                     & 128-bit \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Why TON}
+\label{sec:why_ton}
+
+The choice of TON (The Open Network) as the base layer is driven by technical fit for the specific use case of high-throughput settlement with sub-10-second finality. Below is a comparison with alternatives considered:
+
+\begin{table}[htbp]
+\centering
+\caption{Blockchain Selection: TON vs Alternatives}
+\footnotesize
+{\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}lCCCC@{}}
+\toprule
+\textbf{Parameter} & \textbf{TON}~\cite{ton_wp,ton_docs} & \textbf{Eth.\ L2}\footnote{Optimism/Arbitrum representative.} & \textbf{Polygon zkEVM}~\cite{plonky2} & \textbf{Solana} \\
+\midrule
+Block finality        & \textbf{5.2 sec} & 7--14 min\footnote{Including L1 finality for settlement guarantees.} & 10--30 min & 0.4 sec \\
+Gas cost (per tx)     & \textbf{\$0.001} & \$0.01--0.10 & \$0.005--0.05 & \$0.0005 \\
+Native sharding       & \textbf{Yes}     & No           & No            & No \\
+TPS (current)         & 100,000+         & 2,000--4,000 & 1,000--2,000  & 4,000--10,000 \\
+ZK-proof anchoring    & Native support   & Good         & Native        & Limited \\
+Regulatory perception & Moderate\footnote{See discussion below.} & Strong & Moderate & Weak \\
+\bottomrule
+\end{tabularx}
+}% close tabcolsep
+\end{table}
+
+\noindent\textbf{Key advantages of TON:}
+\begin{itemize}[leftmargin=2em, itemsep=3pt, parsep=0pt]
+\item \textbf{Native sharding} (``infinite sharding paradigm'')~\cite{ton_wp} --- enables horizontal scaling without L2 bridges, which is critical for settlement finality guarantees.
+\item \textbf{5.2-second finality} --- fast enough for real-time settlement but with full L1 security (unlike Solana's optimistic confirmation).
+\item \textbf{Low gas costs} --- \$0.001/tx enables viable unit economics even at the compliance-heavy cost structure.
+\end{itemize}
+
+\noindent\textbf{Addressing the ``Telegram association'' concern.} TON's origin as a Telegram project is the most common objection from banking compliance teams. Three mitigating factors: (1) TON Foundation is legally and operationally independent from Telegram since 2020; (2) the network is governed by an open-source foundation with institutional validators; (3) Vipeink's EMI license and MiCA/CASP compliance provide an independent regulatory layer that does not depend on the underlying blockchain's reputation --- the bank's regulator audits \textit{Vipeink's compliance}, not TON's governance. Additionally, Vipeink's architecture is designed for blockchain portability: the ZK-Rollup layer can be migrated to an alternative L1 if regulatory conditions require it.
+
+\subsection*{MiCA Classification and Regulatory Treatment}
+\label{sec:mica_classification}
+
+Three regulatory questions that institutional investors familiar with MiCA will ask:
+
+\textbf{1. How are Jetton tokens classified under MiCA?} Vipeink Jettons are classified as \textbf{e-money tokens (EMTs)} under Article 48 of MiCA~\cite{mica_reg}, because they: (a) maintain a stable value by reference to a single fiat currency, (b) are issued on receipt of funds, and (c) are redeemable at par value. This classification requires the issuer to hold an EMI license --- which is part of Vipeink's Pre-Seed licensing plan.
+
+\textbf{2. How is fiat $\leftrightarrow$ Jetton conversion handled under AMLD6?} Every fiat-to-Jetton and Jetton-to-fiat conversion triggers a full AML/KYC check at the protocol level via Vipeink's ZK-Compliance layer~\cite{fatf_aml_tech,amld6}. The ZK-proof attests that the check was performed without exposing underlying client data to the settlement network. This design is specifically intended to satisfy AMLD6 requirements for virtual asset service providers.
+
+\textbf{3. What is the risk of ECB tightening requirements for blockchain-based settlement?} This is a real risk. The ECB has signaled interest in regulating DLT-based payment systems more tightly~\cite{ecb_payments}. Vipeink's mitigation: (a) the architecture is designed for compliance-first, not compliance-as-afterthought; (b) DORA ICT compliance~\cite{dora_reg} and ISO 27001~\cite{iso27001} provide a buffer against incremental requirements; (c) blockchain portability (Section~\ref{sec:why_ton}) enables migration if a specific chain is restricted.
+
+\begin{tcolorbox}[insightbox, title={The Technology Moat}]
+The ZK architecture with formally proven theorems, a PCT patent~\cite{wipo_pct} on the ZK+SWIFT bridge and an accumulated regulatory track record create an entry barrier that Tier-1 banks would need 3--5 years and \$50M+ to replicate. This is why M\&A is the priority exit scenario: large players (Worldline~\cite{worldline_ar}, Adyen~\cite{adyen_ar}, BNP Paribas~\cite{bnp_ar}) would likely prefer to acquire rather than build.
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{COST STRUCTURE}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\subsection*{Pre-Seed Budget \$1,192,000: Full Breakdown}
+
+The Pre-Seed budget is fully determined by regulatory requirements and auditor standards. Government fees, auditor tariffs and the compensation of three hired specialists are fixed by the market.
+
+% ─── Budget Waterfall (TikZ) ─────────────────────────────────────────────────
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  bar/.style={fill=accent!70, minimum width=1cm},
+  label/.style={font=\small, anchor=south},
+]
+% Bars
+\fill[accent!80]  (0,0) rectangle (3.5, 2.8);
+\fill[accent!60]  (3.8,0) rectangle (5.6, 1.1);
+\fill[accent!45]  (5.9,0) rectangle (7.7, 0.75);
+\fill[accent!30]  (8.0,0) rectangle (9.8, 1.0);
+% Labels
+\node[label, font=\footnotesize\bfseries, text width=3.2cm, align=center] at (1.75, 3.0) {Licenses\\\$669K (56\%)};
+\node[label, font=\footnotesize\bfseries, text width=1.8cm, align=center] at (4.7, 1.3) {Audits\\\$185K (16\%)};
+\node[label, font=\footnotesize\bfseries, text width=1.8cm, align=center] at (6.8, 0.95) {Dev\\\$142K (12\%)};
+\node[label, font=\footnotesize\bfseries, text width=1.8cm, align=center] at (8.9, 1.2) {Reserve\\\$196K (16\%)};
+% Baseline
+\draw[thick] (-0.2, 0) -- (10.2, 0);
+\end{tikzpicture}
+\caption{Pre-Seed Budget Allocation (\$1,192,000)}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Detailed Pre-Seed Budget (\$1,192,000)\footnote{All figures converted to USD at EUR/USD rate 1.18.}}
+\footnotesize
+{\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+\textbf{Item} & \textbf{Min} & \textbf{Max} & \textbf{Budget} & \textbf{Share} \\
+\midrule
+\multicolumn{5}{@{}l}{\textbf{\textcolor{accent}{Licenses --- \$669,000 (56.14\%)}}} \\
+\midrule
+EMI: government fee + regulatory capital (Bank of Lithuania)~\cite{lb_emi} & \$413K & \$413K & \$413K & 34.65\% \\
+EMI: specialized legal representation                        & \$94K  & \$142K & \$118K & 9.90\% \\
+EMI: operational preparation (processes, documentation)      & \$6K   & \$18K  & \$12K  & 0.99\%  \\
+MiCA/CASP: licensing process (ESMA / Bank of Lithuania)~\cite{mica_reg,esma_mica}      & \$71K  & \$142K & \$106K & 8.91\%  \\
+MiCA/CASP: legal representation                               & \$12K  & \$30K  & \$20K  & 1.68\%  \\
+\midrule
+\textbf{Total: Licenses}                                      & \$596K & \$743K & \textbf{\$669K} & \textbf{56.14\%} \\
+\midrule
+\multicolumn{5}{@{}l}{\textbf{\textcolor{accent}{Audits --- \$185,000 (15.54\%)}}} \\
+\midrule
+Smart-Contract Audit (CertiK / Quantstamp)         & \$30K & \$80K & \$59K & 4.95\% \\
+Penetration Testing (TIBER-EU / OWASP)~\cite{tiber_eu}             & \$15K & \$40K & \$30K & 2.48\% \\
+DORA ICT Compliance Audit~\cite{dora_reg}                          & \$20K & \$50K & \$38K & 3.17\% \\
+ISO 27001 Certification~\cite{iso27001}                            & \$40K & \$70K & \$59K & 4.95\% \\
+\midrule
+\textbf{Total: Audits}                             & & & \textbf{\$185K} & \textbf{15.54\%} \\
+\midrule
+\multicolumn{5}{@{}l}{\textbf{\textcolor{accent}{Development --- \$142,000 (11.88\%)}}} \\
+\midrule
+Security Engineer + 2 Backend Developers (12 months) & --- & --- & \$142K & 11.88\% \\
+\midrule
+\multicolumn{5}{@{}l}{\textbf{\textcolor{accent}{Operational Reserve \& Working Capital --- \$196,000 (16.44\%)}}} \\
+\midrule
+Contingency buffer (regulatory delays, resubmissions) & --- & --- & \$98K & 8.22\% \\
+Working capital \& corporate setup (UAB registration, bank accounts, misc ops) & --- & --- & \$98K & 8.22\% \\
+\midrule
+\textbf{Total: Operational Reserve \& Working Capital} & & & \textbf{\$196K} & \textbf{16.44\%} \\
+\midrule
+\textbf{TOTAL Pre-Seed} & & & \textbf{\$1,192,000} & \textbf{100\%} \\
+\bottomrule
+\end{tabularx}
+}% close tabcolsep
+\end{table}
+
+\subsection*{Development Budget Realism: \$142K for 3 Specialists}
+
+The \$142K development budget covers 3 hires for 12 months, which implies approximately \$3,900/month per person. This is achievable through a combination of: (1) \textbf{equity-heavy compensation} --- each hired specialist receives a meaningful equity stake (specific allocation in the cap table, Section~\ref{sec:legal_structure}), reducing the cash component to below-market base salary; (2) \textbf{remote hiring from cost-effective EU markets} --- Lithuania, Poland, and the Baltics offer strong engineering talent at \$3,000--5,000/month base rates for senior developers; (3) \textbf{co-founder contribution} --- the Mathematician/Architect and Engineer co-founders contribute the core architecture and protocol design at zero cash cost during Pre-Seed, with the hired team executing implementation under their direction.
+
+\begin{table}[htbp]
+\centering
+\caption{Development Team Compensation Structure (Pre-Seed, 12 months)}
+\footnotesize
+{\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}rrLr@{}}
+\toprule
+\textbf{Role} & \textbf{Base/mo} & \textbf{Equity} & \textbf{Market ref.} & \textbf{12-mo cash} \\
+\midrule
+Security Engineer     & \$4,200 & 0.7\% & Glassdoor LT/PL: \$3,800--5,500 & \$50,400 \\
+Backend Dev.\ \#1 & \$3,900 & 0.5\% & LinkedIn LT: \$3,200--5,000 & \$46,800 \\
+Backend Dev.\ \#2 & \$3,700 & 0.5\% & Levels.fyi EE: \$3,000--4,800 & \$44,400 \\
+\midrule
+\textbf{Total (12 mo)} & & \textbf{1.7\%} & & \textbf{\$141,600} \\
+\bottomrule
+\end{tabularx}
+}% close tabcolsep
+\tablesource{Market rates: Glassdoor, LinkedIn Salary Insights, Levels.fyi for Lithuania, Poland, Estonia (senior roles, 2024--2025). Equity at \$9.4M cap: 0.7\%\,=\,\$65.8K; 0.5\%\,=\,\$47K.}
+\end{table}
+
+\noindent\textbf{Why these rates are market-competitive.} Senior backend developers in Lithuania earn \euro 3,000--4,500/month (\$3,500--5,300) based on Glassdoor and LinkedIn data for Vilnius (2024--2025). The cash component of \$3,700--4,200/month is within the 40th--60th percentile range for the region. The equity component (0.5--0.7\% at a \$9.4M cap) adds \$47K--66K in expected value over the 4-year vesting period, making total compensation competitive with senior positions at established Vilnius fintechs such as Vinted, Ondato, or TransferGo. This structure is specifically designed to attract candidates motivated by early-stage equity upside rather than top-of-market cash compensation.
+
+\begin{tcolorbox}[successbox]
+\textbf{Key observation about the budget.} 71.68\% of expenditure (\$854K of \$1,192K) consists of government fees and regulated auditor tariffs~\cite{lb_emi,dora_reg,iso27001,tiber_eu}. They do not depend on team execution, development speed or market conditions. The \$413K EMI regulatory capital is an asset held on balance sheet.
+\end{tcolorbox}
+
+\subsection*{Variable Costs: \$0.01253 per Transaction}
+
+\begin{table}[htbp]
+\centering
+\caption{Variable Cost Structure per Transaction}
+\begin{tabularx}{\linewidth}{@{}Xrrl@{}}
+\toprule
+\textbf{Item} & \textbf{Cost} & \textbf{Share} & \textbf{Trend} \\
+\midrule
+Compliance (AML/KYC/Screening) --- vendors~\cite{fatf_aml_tech,fatf_rec}  & \$0.00830 & 66.2\% & \textcolor{warnred}{Phase 2 optimization priority} \\
+Fraud Prevention (ML screening)             & \$0.00120 & 9.6\%  & Decreases at scale \\
+Bridge Operations (MPC/HSM, watchers)       & \$0.00110 & 8.8\%  & Quasi-fixed \\
+TON Blockchain (gas + storage)~\cite{ton_docs}              & \$0.00090 & 7.2\%  & Decreases with ZK batching \\
+ZK Infrastructure (proof generation)~\cite{plonky2,groth16}        & \$0.00063 & 5.0\%  & Decreases at scale \\
+Infrastructure (CDN, DB, cloud)             & \$0.00040 & 3.2\%  & Quasi-fixed \\
+\midrule
+\textbf{Total}                              & \textbf{\$0.01253} & \textbf{100\%} & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The primary operational challenge is vendor dependency in compliance (66.2\% of variable costs)~\cite{mckinsey_aml,lexisnexis_aml}. This is addressed in Phase 2 through in-house ML AML: a reduction from \$0.0083 to \$0.002--0.004/tx would approximately halve the total variable cost and add 5--8 percentage points to net margin.
+
+\subsection*{Fixed Costs: Stage-Based Growth}
+
+\begin{table}[htbp]
+\centering
+\caption{Fixed Costs by Category and Stage (\$M/year)}
+\small
+\begin{tabularx}{\linewidth}{@{}lRRR@{}}
+\toprule
+\textbf{Category} & \textbf{Pilot} & \textbf{Regional} & \textbf{National} \\
+\midrule
+Engineering         & 0.90 & 3.50 & 10.00 \\
+Infrastructure      & 1.00 & 2.50 &  6.00 \\
+Marketing           & 1.50 & 4.00 & 12.00 \\
+Insurance           & 1.00 & 2.00 &  5.00 \\
+Banking BD          & 0.70 & 2.00 &  6.00 \\
+G\&A                & 0.90 & 3.00 &  8.00 \\
+Licensing           & 0.65 & 2.00 &  5.00 \\
+Security            & 0.40 & 2.00 &  5.00 \\
+Support             & 0.40 & 1.50 &  4.00 \\
+Fraud Prevention    & 0.40 & 1.50 &  4.00 \\
+Product Ops         & 0.30 & 1.50 &  4.00 \\
+Compliance \& Legal & 0.27 & 1.50 &  4.00 \\
+Executive           & 0.12 & 1.00 &  3.00 \\
+\midrule
+\textbf{TOTAL}      & \textbf{8.54} & \textbf{26.10} & \textbf{66.00} \\
+\bottomrule
+\end{tabularx}
+\tablesource{Economic Model v3.1 Stage-Based Scaling, February 2026.}
+\end{table}
+
+\subsection*{Monthly Cash Flow Projection: Months 0--24}
+
+\begin{table}[htbp]
+\centering
+\caption{Monthly Cash Flow Projection (Months 0--24)}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}rRRRX@{}}
+\toprule
+\textbf{Month} & \textbf{Cum.\ Spend} & \textbf{Revenue} & \textbf{Cash Bal.} & \textbf{Key Milestone} \\
+\midrule
+0  & \$0      & \$0   & \$1,192K & Pre-Seed close \\
+1  & \$65K    & \$0   & \$1,127K & UAB registered; EMI filed; first hires \\
+2  & \$130K   & \$0   & \$1,062K & Team of 7 operational \\
+3  & \$195K   & \$0   & \$997K   & ZK-core development begins \\
+4  & \$286K   & \$0   & \$906K   & MiCA/CASP filed \\
+5  & \$351K   & \$0   & \$841K   & Smart-contract audit begins \\
+6  & \$416K   & \$0   & \$776K   & ZK-Rollup devnet \\
+7  & \$481K   & \$0   & \$711K   & Pen test complete \\
+8  & \$546K   & \$0   & \$646K   & DORA audit; ISO 27001 process \\
+9  & \$630K   & \$0   & \$562K   & SWIFT Bridge testnet; arXiv preprint \\
+10 & \$695K   & \$0   & \$497K   & Bank NDA negotiations \\
+11 & \$760K   & \$0   & \$432K   & ISO 27001 obtained \\
+12 & \$825K   & \$0   & \$367K\footnote{Remaining \$367K includes \$413K EMI capital held on balance sheet (restricted).} & EMI expected; Phase 1 begins \\
+\midrule
+13 & \$890K   & \$0    & \$302K  & EMI confirmed; pilot negotiations \\
+14 & \$950K   & \$0    & \$242K  & First bank: PoC stage \\
+15 & \$1,020K & \$0.8M & \$1.0M  & First paid pilot; MiCA obtained \\
+16 & \$1,090K & \$1.6M & \$1.5M  & Pilot ramp-up \\
+17 & \$1,160K & \$2.4M & \$2.2M  & Approaching break-even run-rate \\
+18 & \$1,230K & \$3.8M & \$3.5M  & Break-even achieved \\
+19--24 & +\$420K & \$15M+ & \$12M+  & Second bank PoC; self-funding \\
+\bottomrule
+\end{tabularx}
+\tablesource{Economic Model v3.1, team estimates. Revenue figures are illustrative and depend on pilot timing and volume ramp.}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{SENSITIVITY ANALYSIS AND RISKS}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\subsection*{Scenario Analysis: Month 18 Horizon (Q3 2027)}
+
+Eighteen months from Pre-Seed close (approximately six months after first revenue, Q3 2027) Vipeink should be generating meaningful transaction revenue. Below are four scenarios.
+
+\begin{table}[htbp]
+\centering
+\caption{Scenario Analysis at Month-18 Horizon (Q3 2027)}
+\begin{tabularx}{\linewidth}{@{}lrrrX@{}}
+\toprule
+\textbf{Scenario} & \textbf{tx/year} & \textbf{Revenue} & \textbf{Net Profit} & \textbf{Strategy} \\
+\midrule
+Optimistic   & 80M  & \$72.6M  & \textcolor{okgreen}{\$49M (67\%)}   & Revenue-funded growth; Series A optional \\
+Base         & 50M  & \$45.4M  & \textcolor{okgreen}{\$27.2M (60\%)} & Full self-funding \\
+Conservative & 20M  & \$18.2M  & \textcolor{okgreen}{\$6.1M (34\%)}  & Self-funding; slow growth \\
+Pessimistic  & 5M   & \$4.5M   & \textcolor{warnred}{$-$\$3.1M}      & Scale delay; bridge required \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Even in the pessimistic scenario (5M tx --- one bank with minimal activity), Vipeink does not face an existential crisis: this is a timeline shift, not a business failure. Break-even remains achievable without additional funding as the existing partner's volume grows.
+
+\subsection*{Pilot P\&L Sensitivity}
+
+\begin{table}[htbp]
+\centering
+\caption{Single-Factor Sensitivity Analysis --- Pilot P\&L (50M tx/year, base)}
+\small
+\begin{tabularx}{\linewidth}{@{}XRRRX@{}}
+\toprule
+\textbf{Parameter} & \textbf{Base} & \textbf{Downside $-$20\%} & \textbf{Upside +20\%} & \textbf{Impact on Net Profit} \\
+\midrule
+Fee rate               & 1.65\%   & 1.32\%   & 1.98\%  & $\pm$\$9.1M $\leftarrow$ \textbf{main driver} \\
+Transaction volume     & 50M      & 40M      & 60M     & $\pm$\$5.4M \\
+Variable cost/tx       & \$0.01253 & \$0.010 & \$0.015 & $\pm$\$0.12M $\leftarrow$ negligible \\
+Fixed costs            & \$8.54M  & \$6.8M   & \$10.2M & $\pm$\$1.0M \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Key finding: Vipeink P\&L is most sensitive to fee rate and transaction volume, but barely sensitive to variable costs (\$0.12M impact on a 20\% cost increase). This means even significant ZK/compliance cost growth in Phase 1 does not break the model's economics.
+
+\subsection*{Risk Matrix}
+
+\begin{table}[htbp]
+\centering
+\caption{Critical Risks and Mitigation Strategies}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}p{1.4cm}XX@{}}
+\toprule
+\textbf{Risk} & \textbf{Level} & \textbf{Description} & \textbf{Mitigation} \\
+\midrule
+EMI license delay~\cite{lb_emi}      & \textcolor{warnred}{HIGH}        & Standard timeline 12--18 months; delay postpones first revenue  & Specialized legal counsel with 5+ EMI applications; Q1 2026 filing; parallel development \\[4pt]
+Compliance cost 66\%~\cite{mckinsey_aml}   & \textcolor{warnred}{HIGH}        & \$0.0083/tx vendor dependency limits pricing flexibility         & In-house ML AML by Phase 2 (Q1 2028); volume discounts at 100M+ tx \\[4pt]
+Long sales cycle       & \textcolor{warnred}{HIGH}        & 6--9 months to first commercial revenue after licensing          & 3+ parallel bank negotiations from Month 1; NDA-level contact before license issuance \\[4pt]
+TON infrastructure~\cite{ton_wp}     & \textcolor{warnyellow}{MEDIUM} & Bridge bugs; network incidents & Smart-contract audit; 3-of-5 MPC; watcher rollback; bug bounty \\[4pt]
+Regulatory changes~\cite{dora_reg,mica_reg}     & \textcolor{warnyellow}{MEDIUM} & New EU requirements may add obligations             & DORA ICT + ISO 27001~\cite{iso27001} provide compliance buffer \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{tcolorbox}[warningbox]
+\textbf{An honest assessment of the primary risk.} An EMI license delay is a real scenario: the Bank of Lithuania~\cite{lb_emi} historically reviews applications over 12--18 months. This does not threaten the business, but it postpones first revenue. The mitigation is not a full guarantee, but a probability reduction: a specialized adviser with a relevant track record shortens the process by an average of 2--4 months.
+\end{tcolorbox}
+
+\subsection*{Downside Protection for Investors}
+
+\textbf{Scenario A: No license obtained within 18 months.} If EMI is not granted by Month 18 (Q3 2027), the following assets are preserved: (a) PCT patent application on ZK+SWIFT bridge~\cite{wipo_pct}, (b) completed audit reports (smart-contract, pen test, DORA, ISO 27001) --- transferable assets, (c) ZK-core codebase and Technical Specification v4.0 as IP, (d) bank relationships at NDA/PoC stage. \textbf{Plan B:} apply for EMI in an alternative jurisdiction (Ireland, Netherlands) or pivot to a non-EMI model (agent of a licensed EMI, white-label partnership with an existing payment institution).
+
+\textbf{Scenario B: License obtained, zero bank partners at Month 24.} At zero revenue, monthly burn rate is approximately \$70K (7 FTE + infrastructure + licensing maintenance). Remaining cash at Month 24 depends on license timing but is estimated at \$50--150K if no revenue materializes. \textbf{Plan B:} (a) pivot to an agent/white-label model under an existing PSP (lower margin but faster revenue), (b) license the technology to a PSP as a white-label settlement engine, (c) seek bridge financing from existing investors at the SAFE valuation cap.
+
+\textbf{Liquidation preferences.} Under the SAFE instrument, investors have priority over common shareholders in a liquidation event. In a wind-down scenario, recoverable assets include: EMI license (transferable/saleable to another fintech), IP/patent, audit certifications, and any remaining cash. The EMI license alone has secondary-market value of \$200--500K based on recent transactions in Lithuania~\cite{lb_emi,dealroom}.
+
+\textbf{Decision point.} At Month 18, if neither license nor bank partner is in sight, the board (including SAFE holders with information rights) convenes to decide between: (a) continued pursuit with adjusted timeline, (b) jurisdiction pivot, (c) orderly wind-down with asset disposition.
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{TEAM}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The Vipeink team is built on the principle that every founder is a ``single point of ownership'' for their domain: no critical competency lacks an owner. The four co-founders cover mathematics, engineering, economics, and marketing --- a complete set for the Pre-Seed stage of an infrastructure fintech project.
+
+\subsection*{Co-Founders}
+
+\begin{table}[htbp]
+\centering
+\caption{Core Team: 4 Founders, 4 Mission-Critical Domains}
+\begin{tabularx}{\linewidth}{@{}p{4cm}X p{2.5cm}@{}}
+\toprule
+\textbf{Role} & \textbf{Background and key competencies} & \textbf{Owns} \\
+\midrule
+\textbf{[TO BE ADDED: Founder 1 Name]}
+\newline Co-founder, Mathematician \& Architect
+& {\small\color{placeholderborder!60!black}\textit{[TO BE ADDED: 2--3 sentences. Recommended format: ``PhD/MSc in Applied Cryptography / Mathematics from [University]. Previously [role] at [company], where [achievement relevant to ZK-proof systems or formal verification]. Published X papers on zero-knowledge protocols / distributed systems security.'']}} \newline \textbf{LinkedIn:} \textit{[TO BE ADDED]}
+& Architecture \& Protocol \\[8pt]
+
+\textbf{[TO BE ADDED: Founder 2 Name]}
+\newline Co-founder, Engineer
+& {\small\color{placeholderborder!60!black}\textit{[TO BE ADDED: 2--3 sentences. Recommended format: ``8+ years in distributed systems / blockchain engineering. Previously Senior Engineer at [company], architecting [system] handling Y TPS. Experience with TON/Solidity/Rust smart contracts and banking API integrations.'']}} \newline \textbf{LinkedIn:} \textit{[TO BE ADDED]}
+& Development \& Integrations \\[8pt]
+
+\textbf{[TO BE ADDED: Founder 3 Name]}
+\newline Co-founder, Economist (GTM)
+& {\small\color{placeholderborder!60!black}\textit{[TO BE ADDED: 2--3 sentences. Recommended format: ``Former [role] at [bank/consultancy/fintech]. Led financial modeling for [project]. Experience in bank relationship management, payment system economics, or treasury operations. Negotiated partnerships with X institutions.'']}} \newline \textbf{LinkedIn:} \textit{[TO BE ADDED]}
+& Commercial \& Finance \\[8pt]
+
+\textbf{[TO BE ADDED: Founder 4 Name]}
+\newline Marketing Lead
+& {\small\color{placeholderborder!60!black}\textit{[TO BE ADDED: 2--3 sentences. Recommended format: ``5--10 years in B2B fintech marketing. Previously [role] at [company], driving pipeline from \$0 to \$XM ARR. Expertise in enterprise sales enablement, content marketing for regulated industries, and CAC optimization.'']}} \newline \textbf{LinkedIn:} \textit{[TO BE ADDED]}
+& Acquisition \& Awareness \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Why This Team}
+
+Building a regulated ZK-settlement platform requires a rare combination of deep mathematical expertise (to design and formally verify the cryptographic protocol), systems engineering capability (to implement it at banking-grade reliability), financial domain knowledge (to model economics and negotiate with bank treasurers), and market expertise (to build a pipeline in a segment with 6--9 month sales cycles). This is the same archetype that characterized early teams at successful infrastructure fintechs: Stripe's founding team combined deep technical skill with financial services understanding; Wise paired engineering with treasury expertise. Vipeink's four-founder structure ensures that no critical function depends on an external hire during the highest-risk phase of the company.
+
+\subsection*{Pre-Seed Hires (Q1--Q2 2026)}
+
+Three hires form the technical backbone for parallel execution of development and licensing:
+
+\begin{table}[htbp]
+\centering
+\caption{Pre-Seed Hires (Q1--Q2 2026)}
+\begin{tabularx}{\linewidth}{@{}X l l X@{}}
+\toprule
+\textbf{Role} & \textbf{Hire} & \textbf{Budget (12 mo.)} & \textbf{Criticality} \\
+\midrule
+Security Engineer
+& Month 1 (Q1 2026)
+& within \$142K dev budget
+& Required for audits~\cite{tiber_eu,iso27001} and EMI process~\cite{lb_emi} \\
+Backend Developer \#1
+& Month 1 (Q1 2026)
+& within \$142K dev budget
+& ZK-Rollup core~\cite{plonky2}; TON anchoring~\cite{ton_wp} \\
+Backend Developer \#2
+& Month 2 (Q1 2026)
+& within \$142K dev budget
+& SWIFT MT103 Bridge~\cite{swift_mt103}; Banking API \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Advisory Board}
+
+\begin{table}[htbp]
+\centering
+\caption{Advisory Board (equity-based, pre-Phase 1)}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}p{3.5cm}XXll@{}}
+\toprule
+\textbf{Profile} & \textbf{Name \& Last Role} & \textbf{Value to Vipeink} & \textbf{Terms} & \textbf{Status} \\
+\midrule
+Ex-treasurer, Tier-1/2 bank
+& {\small\textit{[TO BE ADDED: Name, e.g.\ ``Former Head of Treasury, SEB / Swedbank / Luminor'']}}
+& Opens pilot negotiations; bypasses cold outreach
+& 0.25\% equity; 4h/month
+& \textit{In negotiation} \\[4pt]
+
+Professor (IEEE S\&P / USENIX)
+& {\small\textit{[TO BE ADDED: Name, e.g.\ ``Prof.\ of Cryptography, KTH / TU Delft / University of Tartu'']}}
+& Validates cryptographic claims before auditors
+& 0.15\% equity; 2h/month
+& \textit{In negotiation} \\[4pt]
+
+Ex-regulator, central bank
+& {\small\textit{[TO BE ADDED: Name, e.g.\ ``Former Director of Payment Systems, Bank of Lithuania / Latvijas Banka'']}}
+& Accelerates EMI process; reduces rejection risk
+& 0.25\% equity; 4h/month
+& \textit{In negotiation} \\[4pt]
+
+Serial fintech founder with EU exit
+& {\small\textit{[TO BE ADDED: Name, e.g.\ ``Founder of [fintech], acquired by [company] for \$X'']}}
+& Investor network for optional Series A
+& 0.15\% equity; 2h/month
+& \textit{Identified} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Team Growth by Stage}
+
+\begin{table}[htbp]
+\centering
+\caption{Team Growth by Scaling Stage}
+\begin{tabularx}{\linewidth}{@{}X c c X@{}}
+\toprule
+\textbf{Stage} & \textbf{FTE total} & \textbf{Engineering \$/year} & \textbf{Funding source} \\
+\midrule
+Pre-Seed (Q1 2026--Q1 2027)  & 7 (4 + 3 hires) & \$142K  & \$1.19M Pre-Seed \\
+Phase 1 (Q1 2027--Q1 2028)   & 10--15          & \$0.90M & Transaction revenue \\
+Phase 2 (Q1 2028--Q1 2029)   & 25--35          & \$3.50M & Operating cash flow \\
+Growth (2029+)               & 80--100         & \$10.0M & Self-funded \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{INVESTMENT PROPOSAL}
+% ═════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[insightbox, title={Investment Ask}]
+\textbf{\$1,192,000 Pre-Seed --- the only external funding round requested.}
+Vipeink raises capital once: to obtain EMI~\cite{lb_emi} and MiCA/CASP~\cite{mica_reg,esma_mica} licenses, complete all mandatory audits~\cite{tiber_eu,dora_reg,iso27001}, and build the technical team for 12 months. After licensing (Q1--Q2 2027), the business is designed to generate revenue from the first transaction and transition to self-funding. A Series A is possible in 2028--2029 solely to accelerate scaling --- not for survival.
+\end{tcolorbox}
+
+\vspace{0.6em}
+
+\subsection*{Deal Terms}
+
+\begin{table}[htbp]
+\centering
+\caption{Pre-Seed Investment Parameters}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Instrument       & SAFE with 20\% discount and valuation cap \$9.4M \\
+Pre-money valuation & \$4.7--7.1M (rationale below) \\
+Round size       & \$1,192,000 \\
+Use of proceeds  & 56.14\% licenses~\cite{lb_emi,mica_reg}; 15.54\% audits~\cite{tiber_eu,dora_reg,iso27001}; 11.88\% development; 16.44\% reserve \& working capital \\
+Runway           & 12 months (Q1 2026--Q1 2027) to operational independence \\
+Target close     & End of Q1 2026 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Pre-money \$4.7--7.1M rationale.} Vipeink is not an idea in search of a market. At round close, the following exists: Technical Specification v4.0 with 30+ formally proven theorems~\cite{plonky2,groth16}, Economic Model v3.1 with verified unit-economic calculations, a unique ZK+SWIFT bridge architecture (PCT patent candidate~\cite{wipo_pct}) and a team with domain-specific expertise. Comparable pre-revenue companies with proven IP and a professional team in the EU are valued at \$3.5--9.4M~\cite{dealroom,pitchbook}.
+
+\subsection*{Legal Structure}
+\label{sec:legal_structure}
+
+\begin{table}[htbp]
+\centering
+\caption{Corporate Structure}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+\textbf{Entity} & \textbf{Details} \\
+\midrule
+Operating company   & UAB (Lithuania) --- holds EMI license, operational entity \\
+Holding company     & Lithuanian UAB serving as both holding and operating entity (recommended for Pre-Seed simplicity). Rationale: single-jurisdiction structure minimizes administrative overhead and legal costs during the licensing phase. A Netherlands BV or Luxembourg S.à r.l. holding may be introduced at Series A if cross-border tax optimization or investor preference requires it. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Cap Table at Pre-Seed Close (indicative)}
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+\toprule
+\textbf{Shareholder} & \textbf{Ownership} \\
+\midrule
+Founders (4 co-founders combined) & \textit{[TO BE ADDED: recommended 75--80\%]} \\
+ESOP (employee stock option pool) & \textit{[TO BE ADDED: recommended 10--12\%]} \\
+Pre-Seed investors (SAFE conversion at cap) & $\approx$12.7\% \textit{(implied by \$1.19M / \$9.4M cap)} \\
+\midrule
+\textbf{Total}                    & 100\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Vesting:} All founders are subject to standard 4-year vesting with a 1-year cliff. Founder equity that does not vest reverts to the company's ESOP.
+
+\noindent\textbf{SAFE terms:}
+\begin{itemize}[leftmargin=2em, itemsep=2pt, parsep=0pt]
+\item 20\% discount to next priced round
+\item \$9.4M valuation cap
+\item Pro-rata rights: Yes --- investors may participate pro-rata in subsequent priced rounds
+\item Information rights: quarterly financial updates, annual audited statements
+\item MFN clause: Yes --- if subsequent SAFEs are issued on more favorable terms, existing holders receive the improved terms
+\end{itemize}
+
+\subsection*{Capital Structure and Funding Roadmap}
+
+\begin{table}[htbp]
+\centering
+\caption{Capital Raising Structure by Stage}
+\begin{tabularx}{\linewidth}{@{}lXrX@{}}
+\toprule
+\textbf{Stage} & \textbf{Type} & \textbf{Size} & \textbf{Milestone} \\
+\midrule
+\textbf{Pre-Seed (Q1 2026--Q1 2027)} & SAFE / Conv.\ Note & \textbf{\$1.19M} & EMI + MiCA + audits + ZK-core \\
+Phase 1 (Q1 2027--Q1 2028)      & Revenue            & Self-funded      & 1--2 banks; 10--50M tx/year \\
+Series A (optional, 2028--2029)  & Equity round       & \$8--15M         & Accelerate to Regional scale \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{ROI Profile for Pre-Seed Investors}
+
+Three return scenarios over a 3--5 year horizon, based on the financial model.
+
+\begin{table}[htbp]
+\centering
+\caption{Exit Scenarios for Pre-Seed Investors (3--5 Year Horizon, 2029--2031)}
+\begin{tabularx}{\linewidth}{@{}lRRX@{}}
+\toprule
+\textbf{Scenario} & \textbf{Exit Value} & \textbf{Multiple} & \textbf{Conditions} \\
+\midrule
+Base          & \$40--80M   & 6--12$\times$  & 2 banks; 20--50M tx; EMI license; Series A \\
+Optimistic    & \$80--200M  & 12--30$\times$ & 3+ banks; 50M+ tx; EBITDA+; M\&A or Series A~\cite{pitchbook} \\
+Pessimistic   & \$15--30M   & 2--4$\times$   & 1 bank; 5--10M tx; bridge in beta \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Pre-Seed Milestones (Q1 2026--Q1 2027)}
+
+Upon Pre-Seed completion (Q1 2027), the investor should observe the following verifiable outcomes:
+
+\begin{itemize}[leftmargin=2em, itemsep=3pt, parsep=0pt]
+\item EMI license obtained or in final review stage (Bank of Lithuania)~\cite{lb_emi}
+\item MiCA/CASP application filed and accepted by ESMA/Bank of Lithuania~\cite{mica_reg,esma_mica}
+\item Smart-contract audit passed with no critical vulnerabilities (public report)
+\item Penetration test completed; report meets regulator requirements~\cite{tiber_eu}
+\item DORA ICT compliance confirmed~\cite{dora_reg}
+\item ISO 27001 certificate obtained~\cite{iso27001}
+\item ZK-Rollup core~\cite{plonky2} + SWIFT Bridge~\cite{swift_mt103} --- live testnet demonstrating 5.2-second finality
+\item 2+ banks at NDA / PoC Agreement stage
+\end{itemize}
+
+\begin{tcolorbox}[successbox]
+\textbf{Why Pre-Seed is a low-risk investment.} 71.68\% of the budget (\$854K) is determined by fixed regulatory and auditor tariffs~\cite{lb_emi,mica_reg,dora_reg,iso27001,tiber_eu} --- not by operational outcomes with variable results. Every dollar spent either creates a regulatory asset (a license) or a technological asset (an audit / certificate). This is the \textbf{acquisition of the right to operate commercially} in one of the most tightly regulated financial markets in the world.
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{EXIT STRATEGY}
+% ═════════════════════════════════════════════════════════════════════════════
+
+Vipeink is building infrastructure that major payment players and banks are likely to \textbf{prefer acquiring rather than building}: a ZK+SWIFT bridge with formal proofs~\cite{plonky2,groth16}, EU EMI/MiCA licenses~\cite{lb_emi,mica_reg}, active bank contracts and demonstrated profitability. M\&A is the priority strategy; IPO is considered an option at ARR \$100M+.
+
+\begin{table}[htbp]
+\centering
+\caption{Prioritized Exit Scenarios}
+\begin{tabularx}{\linewidth}{@{}llXr@{}}
+\toprule
+\textbf{Priority} & \textbf{Exit type} & \textbf{Likely acquirers} & \textbf{Horizon} \\
+\midrule
+1 & Acquisition (PSP)         & Worldline~\cite{worldline_ar}, Nuvei~\cite{nuvei_ar}, Checkout.com, Adyen~\cite{adyen_ar}       & 2029--2031 \\
+2 & Acquisition (Tier-1 bank) & BNP Paribas~\cite{bnp_ar}, ING~\cite{ing_ar}, Commerzbank, SEB          & 2030--2032 \\
+3 & Acquisition (fintech)     & Wise Business~\cite{wise_ar}, Airwallex, Revolut Business  & 2029--2032 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Valuation benchmarks (upon reaching M\&A conditions)~\cite{pitchbook,temenos_ar}:}
+\begin{itemize}[leftmargin=2em, itemsep=3pt, parsep=0pt]
+\item ARR \$5M + EBITDA margin 95\%: valuation \$50--100M (10--20$\times$ ARR)
+\item ARR \$20M + 15+ banks + EU licenses: valuation \$200--400M (10--20$\times$ ARR)
+\item ZK-patent~\cite{wipo_pct} + formal proofs + first-mover in segment: +20--40\% M\&A premium
+\end{itemize}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\FloatBarrier
+\section{ROADMAP AND MILESTONES}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The Vipeink roadmap is structured across three phases: Pre-Seed (Q1 2026--Q1 2027, regulatory foundation and ZK-core), Phase 1 (Q1 2027--Q1 2028, first revenue and self-funding), Phase 2 (Q1 2028--Q1 2029, revenue-funded scaling).
+
+% ─── Gantt-style Timeline (TikZ) ─────────────────────────────────────────────
+\begin{figure}[htbp]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=0.95cm, y=0.6cm]
+% Timeline
+\draw[thick, ->] (0, 0) -- (13.5, 0);
+\foreach \x/\lab in {0/M0, 3/M3, 6/M6, 9/M9, 12/M12, 13/} {
+  \draw (\x, -0.15) -- (\x, 0.15);
+  \node[below, font=\tiny] at (\x, -0.2) {\lab};
+}
+% Bars
+\fill[accent!70, rounded corners=2pt] (0, 0.5) rectangle (12, 1.1);
+\node[font=\tiny\color{white}, anchor=west] at (0.2, 0.8) {EMI License Process};
+
+\fill[accent!50, rounded corners=2pt] (3, 1.4) rectangle (9, 2.0);
+\node[font=\tiny\color{white}, anchor=west] at (3.2, 1.7) {MiCA/CASP};
+
+\fill[accentlight!70, rounded corners=2pt] (0, 2.3) rectangle (9, 2.9);
+\node[font=\tiny\color{white}, anchor=west] at (0.2, 2.6) {ZK-Core + SWIFT Bridge Dev};
+
+\fill[okgreen!60, rounded corners=2pt] (4, 3.2) rectangle (9, 3.8);
+\node[font=\tiny\color{white}, anchor=west] at (4.2, 3.5) {Audits (SC, Pen, DORA, ISO)};
+
+\fill[warnyellow!70, rounded corners=2pt] (6, 4.1) rectangle (12, 4.7);
+\node[font=\tiny, anchor=west] at (6.2, 4.4) {Bank Negotiations (NDA $\to$ PoC)};
+
+% Milestones
+\draw[thick, warnred] (5, -0.5) -- (5, 0) node[above right, font=\tiny\color{warnred}] {Audit start};
+\draw[thick, okgreen] (12, -0.5) -- (12, 0) node[above right, font=\tiny\color{okgreen}] {License};
+\end{tikzpicture}%
+}% end resizebox
+\caption{Pre-Seed Timeline (Months 0--12, Q1 2026--Q1 2027)}
+\end{figure}
+
+\subsection*{Pre-Seed (Q1 2026--Q1 2027, Months 0--12): Regulatory Foundation}
+
+\begin{table}[htbp]
+\centering
+\caption{Milestones: Pre-Seed (Q1 2026--Q1 2027, Months 0--12)}
+\small
+\begin{tabularx}{\linewidth}{@{}Xll@{}}
+\toprule
+\textbf{Milestone} & \textbf{Deadline} & \textbf{Budget} \\
+\midrule
+Register UAB (Lithuania); open corporate accounts               & Q1 2026 (M1)        & \$6K \\
+Hire: Security Engineer + 2 Backend Developers                  & Q1--Q2 2026 (M1--2) & \$142K/year \\
+File EMI License application (Bank of Lithuania)~\cite{lb_emi}                & Q1 2026 (M1)        & \$413K (capital) \\
+File MiCA/CASP application~\cite{mica_reg,esma_mica}           & Q2 2026 (M4)        & \$126K \\
+ZK-Rollup core + TON anchoring~\cite{plonky2,ton_wp} (devnet)                         & Q2--Q3 2026 (M4--6) & within dev budget \\
+Smart-Contract Audit (CertiK / equivalent)                      & Q2 2026 (M5)        & \$59K \\
+Penetration Testing (TIBER-EU)~\cite{tiber_eu}                                  & Q3 2026 (M7)        & \$30K \\
+DORA ICT Compliance Audit~\cite{dora_reg}                                       & Q3 2026 (M8)        & \$38K \\
+ISO 27001 Certification~\cite{iso27001}                                         & Q3--Q4 2026 (M8--9) & \$59K \\
+SWIFT MT103 Bridge v1~\cite{swift_mt103} (testnet)                                 & Q4 2026 (M9)        & within dev budget \\
+Preprint arXiv / IACR ePrint (public verification)              & Q4 2026 (M9)        & --- \\
+2+ banks: NDA + PoC Agreement                                   & Q4 2026--Q1 2027    & \$18K \\
+EMI license: obtained or in final review~\cite{lb_emi}                        & Q1 2027 (M12)       & --- \\
+\midrule
+\textbf{Outcome: full regulatory readiness, Phase 1 begins}     & Q1 2027             & \textbf{\$1.19M} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Phase 1 (Q1 2027--Q1 2028): First Revenue}
+
+\begin{table}[htbp]
+\centering
+\caption{Milestones: Phase 1 (Q1 2027--Q1 2028, funded from operating revenue)}
+\small
+\begin{tabularx}{\linewidth}{@{}Xll@{}}
+\toprule
+\textbf{Milestone} & \textbf{Quarter} & \textbf{Funding} \\
+\midrule
+EMI license confirmed~\cite{lb_emi} & Q1 2027  & --- \\
+First paid pilot: 1 bank, 1 corridor (1.65--2.9\%)                 & Q1--Q2 2027 & Revenue \\
+MiCA/CASP license obtained~\cite{mica_reg,esma_mica}                                          & Q2 2027  & --- \\
+Break-even (10M tx/year)                                            & Q2--Q3 2027 & EBITDA $\geq$ 0 \\
+Groth16 compliance proofs~\cite{groth16} (production)                              & Q2 2027  & From CF \\
+Second bank: paid pilot                                             & Q3--Q4 2027 & From CF \\
+Hire Head of BD from revenue                                        & Q3 2027  & From CF \\
+\textbf{ARR target at end of Phase 1 (Q1 2028)}               & Q1 2028        & \textbf{\$10--30M} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Phase 2 (Q1 2028--Q1 2029): Scaling}
+
+\begin{table}[htbp]
+\centering
+\caption{Milestones: Phase 2 (Q1 2028--Q1 2029, revenue-funded)}
+\small
+\begin{tabularx}{\linewidth}{@{}Xll@{}}
+\toprule
+\textbf{Milestone} & \textbf{Quarter} & \textbf{Target} \\
+\midrule
+In-house ML AML (\$0.0083 $\to$ \$0.002--0.004/tx)~\cite{fatf_aml_tech}      & Q1 2028  & $-$50--75\% compliance cost \\
+ATM KYC Module (k-anonymity)                             & Q2 2028  & 1 ATM network \\
+Proof Marketplace beta~\cite{zk_rollups}                                   & Q2 2028  & 5--10 external provers \\
+3--5 bank partners (total)                               & Q3 2028  & Pilot $\to$ Regional \\
+Dynamic Sharding (DynShard)~\cite{ton_docs}                      & Q4 2028  & 1,000+ TPS \\
+Series A (\$8--15M) --- optional                         & Q2--Q3 2028    & Growth only \\
+\textbf{ARR target at end of Phase 2 (Q1 2029)}         & Q1 2029        & \textbf{\$30--100M} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\vspace{0.8em}
+\begin{tcolorbox}[keymetric]
+\centering
+\vspace{0.4em}
+{\large\bfseries\color{accent} Final Investment Thesis}\\[0.8em]
+\begin{tabular}{@{}p{5.2cm}p{8.8cm}@{}}
+\textbf{\$1.19M Pre-Seed} & funds the only barrier --- regulatory licensing~\cite{lb_emi,mica_reg} \\[6pt]
+\textbf{Profitability}              & achieved at 10M tx/year, equivalent to one bank partner \\[6pt]
+\textbf{59.8\% net margin}          & at 50M tx --- higher than Visa~\cite{visa_ar} at national scale \\[6pt]
+\textbf{6--30$\times$ exit}         & over 3--5 years via M\&A~\cite{worldline_ar,adyen_ar,bnp_ar,ing_ar} \\[6pt]
+\textbf{Series A optional}          & for acceleration only --- not for survival \\
+\end{tabular}
+\vspace{0.4em}
+\end{tcolorbox}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\section*{APPENDIX A: DATA ROOM CONTENTS}
+\addcontentsline{toc}{section}{Appendix A: Data Room Contents}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The following materials are available for due diligence upon execution of NDA:
+
+\begin{table}[htbp]
+\centering
+\caption{Data Room Checklist}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+\textbf{\#} & \textbf{Document} & \textbf{Status} \\
+\midrule
+1 & Technical Specification v4.0 (30+ formal theorems) & Available \\
+2 & Economic Model v3.1 (Excel/Google Sheets) & Available \\
+3 & Cap Table (detailed, post-Pre-Seed) & \textit{Available upon NDA execution} \\
+4 & Founder CVs and LinkedIn profiles & \textit{Available upon NDA execution} \\
+5 & PCT Patent Application (ZK+SWIFT Bridge) & \textit{In preparation (target filing: Q2 2026)} \\
+6 & Sample Bank Pitch Deck (1-pager + full deck) & Available \\
+7 & Compliance Architecture Diagram & Available \\
+8 & SAFE Term Sheet (draft) & \textit{Available upon investor interest confirmation} \\
+9 & UAB Registration Documents & \textit{Post-close} \\
+10 & Auditor engagement letters (CertiK, ISO 27001 body) & \textit{Post-close} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+\section*{APPENDIX B: THEORETICAL SCALE CEILINGS}
+\addcontentsline{toc}{section}{Appendix B: Theoretical Scale Ceilings}
+% ═════════════════════════════════════════════════════════════════════════════
+
+The following projections represent mathematical extrapolations of the Economic Model v3.1 at National and Global scale. \textbf{These are not forecasts.} They illustrate the theoretical ceiling of the model's economics if volume reaches these levels over a 5--10+ year horizon. The primary focus of this business plan is the path from \$0 to \$30M ARR (Pilot to early Regional).
+
+\begin{table}[htbp]
+\centering
+\caption{Theoretical Scale Ceilings (not forecasts)}
+\small
+\begin{tabularx}{\linewidth}{@{}lRRRR@{}}
+\toprule
+\textbf{Parameter} & \textbf{Pilot} & \textbf{Regional} & \textbf{National*} & \textbf{Global*} \\
+\midrule
+Volume (tx/year)       & 50M      & 1B        & 6B         & 40B        \\
+Fixed costs/year       & \$8.54M  & \$26.1M   & \$66.0M    & \$169.0M   \\
+Revenue (1.65\%)       & \$45.4M  & \$907.5M  & \$5,445M   & \$36,300M  \\
+Net Profit             & \$27.2M  & \$651.7M  & \$3,978M   & \$26,722M  \\
+Net Margin             & 59.8\%   & 71.8\%    & 73.1\%     & 73.6\%     \\
+\bottomrule
+\end{tabularx}
+\tablesource{Economic Model v3.1. *National and Global are mathematical extrapolations, not operational forecasts.}
+\end{table}
+
+
+\vspace{1em}
+\begin{center}
+{\small\color{gray!80}
+For additional materials\\
+(Technical Specification v4.0, Economic Model v3.1, Due Diligence package)\\[6pt]
+please contact the Vipeink team directly.\\[10pt]
+\href{mailto:vipeink.official@gmail.com}{\textbf{vipeink.official@gmail.com}}\\[8pt]
+\textbf{Confidential. March 2026.}
+}
+\end{center}
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+%  REFERENCES
+% ═════════════════════════════════════════════════════════════════════════════
+\newpage
+\begin{thebibliography}{99}
+
+% ── 1. MARKET SIZE & GROWTH ──────────────────────────────────────────────────
+\bibitem{bis_crossborder}
+Bank for International Settlements (BIS) / CPMI.
+\textit{Cross-border payments: a G20 priority} (Phase 1--4 Report Series).
+BIS, 2020--2023.
+
+\bibitem{mckinsey_payments}
+McKinsey \& Company.
+\textit{The 2023 McKinsey Global Payments Report}.
+McKinsey, 2023.
+
+\bibitem{mckinsey_2024}
+McKinsey \& Company.
+\textit{The 2024 McKinsey Global Payments Report}.
+McKinsey, 2024.
+
+\bibitem{ecb_payments}
+European Central Bank.
+\textit{Payments and Market Infrastructure in Europe}.
+ECB, 2023.
+
+\bibitem{capgemini_wpr}
+Capgemini.
+\textit{World Payments Report 2023}.
+Capgemini, 2023.
+
+\bibitem{mm_blockchain}
+MarketsandMarkets.
+\textit{Blockchain in B2B Payments Market --- Global Forecast to 2028}.
+MarketsandMarkets, 2023.
+
+\bibitem{gvr_zkproof}
+Grand View Research.
+\textit{Zero Knowledge Proof Market Size, Share \& Trends Analysis Report}.
+Grand View Research, 2023.
+
+% ── 2. REGULATORY & COMPLIANCE ───────────────────────────────────────────────
+\bibitem{mica_reg}
+European Parliament and Council.
+\textit{Regulation (EU) 2023/1114 on Markets in Crypto-Assets (MiCA)}.
+OJ EU, 2023.
+
+\bibitem{dora_reg}
+European Parliament and Council.
+\textit{Regulation (EU) 2022/2554 --- Digital Operational Resilience Act (DORA)}.
+OJ EU, 2022.
+
+\bibitem{amld6}
+European Parliament and Council.
+\textit{Directive (EU) 2018/1673 (AMLD6)}.
+OJ EU, 2018.
+
+\bibitem{lb_emi}
+Lietuvos Bankas (Bank of Lithuania).
+\textit{Electronic Money Institution License Requirements}.
+Bank of Lithuania, 2023.
+
+\bibitem{esma_mica}
+European Securities and Markets Authority (ESMA).
+\textit{Guidelines under MiCA / CASP Licensing Requirements}.
+ESMA, 2023--2024.
+
+\bibitem{swift_iso20022}
+SWIFT and ISO.
+\textit{ISO 20022 Migration Guide for Financial Institutions}.
+SWIFT, 2023.
+
+\bibitem{swift_mt103}
+SWIFT Standards.
+\textit{MT103 --- Single Customer Credit Transfer: Standards Release Guide}.
+SWIFT, 2023.
+
+\bibitem{iso27001}
+International Organization for Standardization.
+\textit{ISO/IEC 27001:2022 --- Information Security}.
+ISO, 2022.
+
+\bibitem{tiber_eu}
+European Central Bank.
+\textit{TIBER-EU Framework}.
+ECB, 2022.
+
+\bibitem{mckinsey_aml}
+McKinsey \& Company.
+\textit{The Future of Financial Crime Compliance}.
+McKinsey, 2022.
+
+\bibitem{fatf_rec}
+Financial Action Task Force (FATF).
+\textit{FATF Recommendations on AML/CTF}.
+FATF, 2023.
+
+% ── 3. COMPETITOR & FINANCIAL DATA ───────────────────────────────────────────
+\bibitem{visa_ar}
+Visa Inc. \textit{Annual Report 2023 (Form 10-K)}. Visa, 2023.
+
+\bibitem{mc_ar}
+Mastercard Inc. \textit{Annual Report 2023 (Form 10-K)}. Mastercard, 2023.
+
+\bibitem{paypal_ar}
+PayPal Holdings. \textit{Annual Report 2023 (Form 10-K)}. PayPal, 2023.
+
+\bibitem{stripe_pricing}
+Stripe, Inc. \textit{Stripe Payments Pricing Documentation}. Stripe, 2024.
+
+\bibitem{stripe_financial}
+Stripe, Inc. \textit{Financial Statements (Series I Filing Materials)}. Via Bloomberg/Reuters, 2023.
+
+\bibitem{worldline_ar}
+Worldline SA. \textit{Annual Report 2023}. Worldline, 2023.
+
+\bibitem{adyen_ar}
+Adyen N.V. \textit{Annual Report 2023}. Adyen, 2023.
+
+\bibitem{temenos_ar}
+Temenos AG. \textit{Annual Report 2023}. Temenos, 2023.
+
+\bibitem{finastra_ar}
+Finastra Group Holdings. \textit{Annual Report 2022}. Via rating agencies, 2022.
+
+\bibitem{fis_ar}
+FIS (Fidelity National Information Services). \textit{Annual Report 2023}. FIS, 2023.
+
+\bibitem{nuvei_ar}
+Nuvei Corporation. \textit{Annual Report 2023}. Nuvei, 2023.
+
+\bibitem{bnp_ar}
+BNP Paribas S.A. \textit{Annual Report 2023}. BNP Paribas, 2023.
+
+\bibitem{pitchbook}
+PitchBook / CB Insights. \textit{Fintech M\&A Multiples 2023--2024}. PitchBook, 2023--2024.
+
+\bibitem{ing_ar}
+ING Groep N.V. \textit{Annual Report 2023}. ING, 2023.
+
+\bibitem{dealroom}
+Dealroom.co / Sifted. \textit{European Fintech Investment Landscape 2024}. Dealroom, 2024.
+
+\bibitem{stripe_s1}
+Various analysts (Reuters, Bloomberg). \textit{Stripe Financial Information}. 2023.
+
+% ── 4. TECHNOLOGY ────────────────────────────────────────────────────────────
+\bibitem{plonky2}
+Polygon Zero Team.
+\textit{Plonky2: Fast Recursive Arguments with PLONK and FRI}.
+Polygon, 2022.
+
+\bibitem{groth16}
+Groth, J.
+\textit{On the Size of Pairing-Based Non-interactive Arguments}.
+EUROCRYPT 2016. Springer, 2016.
+
+\bibitem{ton_wp}
+TON Foundation. \textit{The Open Network: Technical White Paper}. TON, 2023.
+
+\bibitem{ton_docs}
+TON Foundation. \textit{TON Blockchain Documentation}. TON, 2024.
+
+\bibitem{swift_gpi}
+SWIFT. \textit{SWIFT gpi: Enabling the Future of Cross-Border Payments}. SWIFT, 2023.
+
+\bibitem{zk_rollups}
+Ethereum Foundation. \textit{ZK-Rollups: Survey on Scalability and Security}. 2022.
+
+\bibitem{wipo_pct}
+World Intellectual Property Organization. \textit{PCT Database}. WIPO, 2024.
+
+\bibitem{fatf_aml_tech}
+FATF / Egmont Group. \textit{Opportunities and Challenges of New Technologies for AML/CFT}. FATF, 2023.
+
+% ── 5. MACROECONOMIC & INFRASTRUCTURE ────────────────────────────────────────
+\bibitem{swift_history}
+SWIFT. \textit{SWIFT History and Milestones}. SWIFT, 2023.
+
+\bibitem{swift_correspondent}
+SWIFT. \textit{Correspondent Banking Data Report 2023}. SWIFT, 2023.
+
+\bibitem{bis_correspondent}
+BIS / CPMI. \textit{Correspondent Banking (CPMI Report No.\ 190)}. BIS, 2020.
+
+\bibitem{lexisnexis_aml}
+LexisNexis Risk Solutions. \textit{True Cost of Financial Crime Compliance Study 2023}. LexisNexis, 2023.
+
+\bibitem{wise_ar}
+Wise plc. \textit{Annual Report 2023}. Wise, 2023.
+
+% ── 6. DIRECT COMPETITORS (NEW) ─────────────────────────────────────────────
+\bibitem{partior}
+Partior Pte. Ltd. \textit{Partior: Blockchain for Interbank Clearing and Settlement}. Company website and press releases, 2023--2024. \url{https://www.partior.com}.
+
+\bibitem{fnality}
+Fnality International. \textit{Fnality: Tokenised Forms of Central Bank Money}. Company disclosures, 2023--2024. \url{https://www.fnality.org}.
+
+\bibitem{r3_corda}
+R3 LLC. \textit{Corda: The Enterprise DLT Platform}. R3, 2023. \url{https://www.r3.com/products/corda/}.
+
+\bibitem{canton_network}
+Digital Asset Holdings / Canton Network. \textit{Canton Network: Privacy-Enabled Interoperability}. 2023--2024. \url{https://www.canton.network}.
+
+\bibitem{circle}
+Circle Internet Financial. \textit{USDC and Circle Payments Infrastructure}. Circle, 2024. \url{https://www.circle.com}.
+
+\end{thebibliography}
+
+\end{document}

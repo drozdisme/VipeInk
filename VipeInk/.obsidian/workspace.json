@@ -11,12 +11,10 @@
             "id": "bb710f8fecea3260",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "WhitePaper.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "WhitePaper"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Новая вкладка"
             }
           }
         ]
@@ -92,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "WhitePaper.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Обратные ссылки для WhitePaper"
+              "title": "Обратные ссылки"
             }
           },
           {
@@ -115,7 +112,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Исходящие ссылки"
             }
           },
           {
@@ -162,11 +159,13 @@
               "title": "Outline of Untitled"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -176,26 +175,47 @@
       "daily-notes:Сегодняшняя заметка": false,
       "templates:Вставить шаблон": false,
       "command-palette:Открыть палитру команд": false,
-      "bases:Создать новую базу": false
+      "bases:Создать новую базу": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "bb710f8fecea3260",
   "lastOpenFiles": [
+    "reference/BisnesPlan.tex",
+    "reference/WhitePaper.tex",
+    "reference/WhitePaper.pdf",
+    "reference/BisnesPlan.pdf",
+    "reference/Architecture.md",
+    "Метрики успеха.md",
+    "plans/mvp_plan_v2.md",
+    "plans/mvp_plan_latest.md",
+    "plans/mvp_plan_v1.md",
+    "Wallet Reuse Hypothesis.md",
+    "Workflow Simplicity Hypothesis.md",
+    "Wallet Handoff.md",
     "speculation.md",
-    "functions.md",
+    "Source Documents.md",
+    "Payment Intent.md",
     "MVP.md",
+    "ICP Hypothesis.md",
+    "Future Architecture.md",
+    "functions.md",
+    "Activity Log.md",
+    "Этап 3 Тестирование.md",
+    "Этап 2 MVP.md",
+    "Этап 1 Прототип.md",
+    "Архитектура MVP.md",
+    "Ключевые функции.md",
+    "Ценность продукта.md",
+    "Без названия.md",
+    "Целевая аудитория.md",
+    "Техстек MVP.md",
+    "research",
+    "reference",
+    "plans",
     "BisnesPlan.pdf",
-    "Architecture.md",
-    "Untitled",
-    "Untitled.md",
-    "TON SWIFT Intent Settlement_dragdropdo.md",
-    "create a link.md",
-    "TON SWIFT Intent Settlement 1.txt",
-    "TON SWIFT Intent Settlement.txt",
+    "auto-pull.ps1",
     "WhitePaper.pdf",
-    "Welcome.md",
-    "TON SWIFT Intent Settlement-2026-04-14-120443.mmd",
-    "2026-04-14.md",
-    "Untitled.base"
+    "Untitled"
   ]
 }
